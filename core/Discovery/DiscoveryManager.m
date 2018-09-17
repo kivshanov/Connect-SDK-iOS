@@ -47,12 +47,12 @@
 {
     NSMutableDictionary *_allDevices;
     NSMutableDictionary *_compatibleDevices;
-
+    
     BOOL _shouldResumeSearch;
     BOOL _searching;
     
     DevicePicker *_currentPicker;
-
+    
     NSTimer *_ssidTimer;
     NSString *_currentSSID;
 }
@@ -64,31 +64,31 @@
 {
     static dispatch_once_t predicate = 0;
     __strong static id _sharedManager = nil;
-
+    
     dispatch_once(&predicate, ^{
         _sharedManager = [[self alloc] init];
     });
-
+    
     return _sharedManager;
 }
 
 + (DiscoveryManager *) sharedManager
 {
     DiscoveryManager *manager = [self _sharedManager];
-
+    
     if (!manager.deviceStore && manager.useDeviceStore)
         [manager setDeviceStore:[DefaultConnectableDeviceStore new]];
-
+    
     return manager;
 }
 
 + (DiscoveryManager *) sharedManagerWithDeviceStore:(id <ConnectableDeviceStore>)deviceStore
 {
     DiscoveryManager *manager = [self _sharedManager];
-
+    
     if (deviceStore == nil || manager.deviceStore != deviceStore)
         [manager setDeviceStore:deviceStore];
-
+    
     return manager;
 }
 
@@ -116,21 +116,21 @@
         
         _discoveryProviders = [[NSMutableArray alloc] init];
         _deviceClasses = [[NSMutableDictionary alloc] init];
-
+        
         _allDevices = [[NSMutableDictionary alloc] init];
         _compatibleDevices = [[NSMutableDictionary alloc] init];
-
+        
         _appStateChangeNotifier = stateNotifier ?: [AppStateChangeNotifier new];
         __weak typeof(self) wself = self;
         _appStateChangeNotifier.didBackgroundBlock = ^{
             typeof(self) sself = wself;
-            [sself pauseDiscovery];
+            //            [sself pauseDiscovery];
         };
         _appStateChangeNotifier.didForegroundBlock = ^{
             typeof(self) sself = wself;
-            [sself resumeDiscovery];
+            //            [sself resumeDiscovery];
         };
-
+        
         [self startSSIDTimer];
     }
     
@@ -155,7 +155,7 @@
 {
     if (![discoveryClass isSubclassOfClass:[DiscoveryProvider class]])
         return;
-
+    
     [self registerDeviceService:deviceClass
    withDiscoveryProviderFactory:^DiscoveryProvider *{
        return [discoveryClass new];
@@ -190,7 +190,7 @@
     NSDictionary *discoveryParameters = [deviceClass discoveryParameters];
     
     NSString *serviceId = [discoveryParameters objectForKey:@"serviceId"];
-
+    
     NSMutableDictionary *mutableClasses = [NSMutableDictionary dictionaryWithDictionary:_deviceClasses];
     [mutableClasses setObject:deviceClass forKey:serviceId];
     _deviceClasses = [NSDictionary dictionaryWithDictionary:mutableClasses];
@@ -222,7 +222,7 @@
     NSDictionary *discoveryParameters = [discoveryClass discoveryParameters];
     
     NSString *serviceId = [discoveryParameters objectForKey:@"serviceId"];
-
+    
     NSMutableDictionary *mutableClasses = [NSMutableDictionary dictionaryWithDictionary:_deviceClasses];
     [mutableClasses removeObjectForKey:serviceId];
     _deviceClasses = [NSDictionary dictionaryWithDictionary:mutableClasses];
@@ -233,7 +233,7 @@
     {
         [discoveryProvider stopDiscovery];
         discoveryProvider.delegate = nil;
-
+        
         NSMutableArray *mutableProviders = [NSMutableArray arrayWithArray:_discoveryProviders];
         [mutableProviders removeObject:discoveryProvider];
         _discoveryProviders = [NSArray arrayWithArray:mutableProviders];
@@ -257,35 +257,35 @@
 - (void) detectSSIDChange
 {
     NSArray *interfaces = (__bridge_transfer id) CNCopySupportedInterfaces();
-
+    
     __block NSString *ssidName;
-
+    
     [interfaces enumerateObjectsUsingBlock:^(NSString *interface, NSUInteger idx, BOOL *stop)
-    {
-        if ([interface caseInsensitiveCompare:@"en0"] != NSOrderedSame)
-            return;
-
-        NSDictionary *info = (__bridge_transfer id) CNCopyCurrentNetworkInfo ((__bridge CFStringRef) interface);
-
-        if (info && [info objectForKey:@"SSID"])
-        {
-            ssidName = [info objectForKey:@"SSID"];
-            *stop = YES;
-        }
-    }];
-
+     {
+         if ([interface caseInsensitiveCompare:@"en0"] != NSOrderedSame)
+             return;
+         
+         NSDictionary *info = (__bridge_transfer id) CNCopyCurrentNetworkInfo ((__bridge CFStringRef) interface);
+         
+         if (info && [info objectForKey:@"SSID"])
+         {
+             ssidName = [info objectForKey:@"SSID"];
+             *stop = YES;
+         }
+     }];
+    
     if (ssidName == nil)
         ssidName = @"";
-
+    
     if ([ssidName caseInsensitiveCompare:_currentSSID] != NSOrderedSame)
     {
         if (_currentSSID != nil)
         {
             [self purgeDeviceList];
-
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:kConnectSDKWirelessSSIDChanged object:nil];
         }
-
+        
         _currentSSID = ssidName;
     }
 }
@@ -293,21 +293,21 @@
 - (void) purgeDeviceList
 {
     [self.compatibleDevices enumerateKeysAndObjectsUsingBlock:^(id key, ConnectableDevice *device, BOOL *stop)
-    {
-        [device disconnect];
-        
-        if (self.delegate)
-            [self.delegate discoveryManager:self didLoseDevice:device];
-
-        if (self.devicePicker)
-            [self.devicePicker discoveryManager:self didLoseDevice:device];
-    }];
+     {
+         [device disconnect];
+         
+         if (self.delegate)
+             [self.delegate discoveryManager:self didLoseDevice:device];
+         
+         if (self.devicePicker)
+             [self.devicePicker discoveryManager:self didLoseDevice:device];
+     }];
     
     [_discoveryProviders enumerateObjectsUsingBlock:^(DiscoveryProvider *provider, NSUInteger idx, BOOL *stop) {
         [provider stopDiscovery];
         [provider startDiscovery];
     }];
-
+    
     _allDevices = [NSMutableDictionary new];
     _compatibleDevices = [NSMutableDictionary new];
 }
@@ -317,38 +317,38 @@
 - (void)setCapabilityFilters:(NSArray *)capabilityFilters
 {
     _capabilityFilters = capabilityFilters;
-
+    
     @synchronized (_compatibleDevices)
     {
         [_compatibleDevices enumerateKeysAndObjectsUsingBlock:^(NSString *address, ConnectableDevice *device, BOOL *stop)
-        {
-            if (self.delegate)
-                [self.delegate discoveryManager:self didLoseDevice:device];
-        }];
+         {
+             if (self.delegate)
+                 [self.delegate discoveryManager:self didLoseDevice:device];
+         }];
     }
-
+    
     _compatibleDevices = [[NSMutableDictionary alloc] init];
-
+    
     NSArray *allDevices;
-
+    
     @synchronized (_allDevices) { allDevices = [_allDevices allValues]; }
-
+    
     [allDevices enumerateObjectsUsingBlock:^(ConnectableDevice *device, NSUInteger idx, BOOL *stop)
-    {
-        if ([self deviceIsCompatible:device])
-        {
-            @synchronized (_compatibleDevices) { [_compatibleDevices setValue:device forKey:device.address]; }
-
-            if (self.delegate)
-                [self.delegate discoveryManager:self didFindDevice:device];
-        }
-    }];
+     {
+         if ([self deviceIsCompatible:device])
+         {
+             @synchronized (_compatibleDevices) { [_compatibleDevices setValue:device forKey:device.address]; }
+             
+             if (self.delegate)
+                 [self.delegate discoveryManager:self didFindDevice:device];
+         }
+     }];
 }
 
 - (BOOL) descriptionIsNetcastTV:(ServiceDescription *)description
 {
     BOOL isNetcast = NO;
-
+    
     if ([description.modelName.uppercaseString isEqualToString:@"LG TV"])
     {
         if ([description.modelDescription.uppercaseString rangeOfString:@"WEBOS"].location == NSNotFound)
@@ -356,7 +356,7 @@
             isNetcast = [description.serviceId isEqualToString:kConnectSDKNetcastTVServiceId];
         }
     }
-
+    
     return isNetcast;
 }
 
@@ -376,18 +376,18 @@
 {
     if (!_capabilityFilters || _capabilityFilters.count == 0)
         return YES;
-
+    
     __block BOOL isCompatible = NO;
-
+    
     [self.capabilityFilters enumerateObjectsUsingBlock:^(CapabilityFilter *filter, NSUInteger idx, BOOL *stop)
-    {
-        if ([device hasCapabilities:filter.capabilities])
-        {
-            isCompatible = YES;
-            *stop = YES;
-        }
-    }];
-
+     {
+         if ([device hasCapabilities:filter.capabilities])
+         {
+             isCompatible = YES;
+             *stop = YES;
+         }
+     }];
+    
     return isCompatible;
 }
 
@@ -395,12 +395,12 @@
 {
     if (![self deviceIsCompatible:device])
         return;
-
+    
     @synchronized (_compatibleDevices) { [_compatibleDevices setValue:device forKey:device.address]; }
-
+    
     if (self.delegate)
         [self.delegate discoveryManager:self didFindDevice:device];
-
+    
     if (_currentPicker)
         [_currentPicker discoveryManager:self didFindDevice:device];
 }
@@ -408,7 +408,7 @@
 - (void) handleDeviceUpdate:(ConnectableDevice *)device
 {
     [self.deviceStore updateDevice:device];
-
+    
     if ([self deviceIsCompatible:device])
     {
         @synchronized (_compatibleDevices) {
@@ -416,7 +416,7 @@
             {
                 if (self.delegate)
                     [self.delegate discoveryManager:self didUpdateDevice:device];
-
+                
                 if (_currentPicker)
                     [_currentPicker discoveryManager:self didUpdateDevice:device];
             } else
@@ -427,7 +427,7 @@
     } else
     {
         @synchronized (_compatibleDevices) { [_compatibleDevices removeObjectForKey:device.address]; }
-
+        
         [self handleDeviceLoss:device];
     }
 }
@@ -436,7 +436,7 @@
 {
     if (self.delegate)
         [self.delegate discoveryManager:self didLoseDevice:device];
-
+    
     if (_currentPicker)
         [_currentPicker discoveryManager:self didLoseDevice:device];
 }
@@ -444,7 +444,7 @@
 - (void)setPairingLevel:(DeviceServicePairingLevel)pairingLevel
 {
     NSAssert(!_searching, @"Cannot change pairing level while DiscoveryManager is running.");
-
+    
     _pairingLevel = pairingLevel;
 }
 
@@ -454,16 +454,16 @@
 {
     if (_searching)
         return;
-
+    
     if (_deviceClasses.count == 0)
         [self registerDefaultServices];
-
+    
     _searching = YES;
     
     [_discoveryProviders enumerateObjectsUsingBlock:^(DiscoveryProvider *service, NSUInteger idx, BOOL *stop) {
         [service startDiscovery];
     }];
-
+    
     [self.appStateChangeNotifier startListening];
 }
 
@@ -471,7 +471,7 @@
 {
     if (!_searching)
         return;
-
+    
     _searching = NO;
     
     [_discoveryProviders enumerateObjectsUsingBlock:^(DiscoveryProvider *service, NSUInteger idx, BOOL *stop) {
@@ -488,12 +488,12 @@
 - (void)pauseDiscovery {
     // moved from -hAppDidEnterBackground:
     [self stopSSIDTimer];
-
+    
     if (_searching)
     {
         _searching = NO;
         _shouldResumeSearch = YES;
-
+        
         [self.discoveryProviders makeObjectsPerformSelector:@selector(pauseDiscovery)];
     }
 }
@@ -502,12 +502,12 @@
 - (void)resumeDiscovery {
     // moved from -hAppDidBecomeActive:
     [self startSSIDTimer];
-
+    
     if (_shouldResumeSearch)
     {
         _searching = YES;
         _shouldResumeSearch = NO;
-
+        
         [self.discoveryProviders makeObjectsPerformSelector:@selector(resumeDiscovery)];
     }
 }
@@ -517,16 +517,16 @@
 - (void)discoveryProvider:(DiscoveryProvider *)provider didFindService:(ServiceDescription *)description
 {
     DLog(@"%@ (%@)", description.friendlyName, description.serviceId);
-
+    
     BOOL deviceIsNew = [_allDevices objectForKey:description.address] == nil;
     ConnectableDevice *device;
-
+    
     if (deviceIsNew)
     {
         if (self.useDeviceStore)
         {
             device = [self.deviceStore deviceForId:description.UUID];
-
+            
             if (device)
                 @synchronized (_allDevices) { [_allDevices setObject:device forKey:description.address]; }
         }
@@ -534,30 +534,30 @@
     {
         @synchronized (_allDevices) { device = [_allDevices objectForKey:description.address]; }
     }
-
+    
     if (!device)
     {
         device = [ConnectableDevice connectableDeviceWithDescription:description];
         @synchronized (_allDevices) { [_allDevices setObject:device forKey:description.address]; }
         deviceIsNew = YES;
     }
-
+    
     device.lastDetection = [[NSDate date] timeIntervalSince1970];
     device.lastKnownIPAddress = description.address;
     device.lastSeenOnWifi = _currentSSID;
-
+    
     [self addServiceDescription:description toDevice:device];
-
-    if (device.services.count == 0)
-    {
-        // we get here when a non-LG DLNA TV is found
-
-        [_allDevices removeObjectForKey:description.address];
-        device = nil;
-
-        return;
-    }
-
+    
+    //    if (device.services.count == 0)
+    //    {
+    //        // we get here when a non-LG DLNA TV is found
+    //
+    //        [_allDevices removeObjectForKey:description.address];
+    //        device = nil;
+    //
+    //        return;
+    //    }
+    
     if (deviceIsNew)
         [self handleDeviceAdd:device];
     else
@@ -569,28 +569,28 @@
     DLog(@"%@ (%@)", description.friendlyName, description.serviceId);
     
     ConnectableDevice *device;
-
+    
     @synchronized (_allDevices) { device = [_allDevices objectForKey:description.address]; }
     
     if (device)
     {
         [device removeServiceWithId:description.serviceId];
-
+        
         DLog(@"Removed service from device at address %@. Device has %lu services left",
              description.address, (unsigned long)device.services.count);
-
-        if (![device hasServices])
-        {
-            DLog(@"Device at address %@ has been orphaned (has no services)", description.address);
-
-            @synchronized (_allDevices) { [_allDevices removeObjectForKey:description.address]; }
-            @synchronized (_compatibleDevices) { [_compatibleDevices removeObjectForKey:description.address]; }
-
-            [self handleDeviceLoss:device];
-        } else
-        {
-            [self handleDeviceUpdate:device];
-        }
+        
+        //        if (![device hasServices]) //todo double check [nk]
+        //        {
+        DLog(@"Device at address %@ has been orphaned (has no services)", description.address);
+        
+        @synchronized (_allDevices) { [_allDevices removeObjectForKey:description.address]; }
+        @synchronized (_compatibleDevices) { [_compatibleDevices removeObjectForKey:description.address]; }
+        
+        [self handleDeviceLoss:device];
+        //        } else
+        //        {
+        //            [self handleDeviceUpdate:device];
+        //        }
     }
 }
 
@@ -604,7 +604,7 @@
 - (void) addServiceDescription:(ServiceDescription *)description toDevice:(ConnectableDevice *)device
 {
     Class deviceServiceClass = [_deviceClasses objectForKey:description.serviceId];
-
+    
     // TODO: move this logic into DeviceService subclass init methods
     if (deviceServiceClass == [DLNAService class])
     {
@@ -615,32 +615,32 @@
         if (![self descriptionIsNetcastTV:description])
             return;
     }
-
+    
     ServiceConfig *serviceConfig;
-
+    
     if (self.useDeviceStore)
         serviceConfig = [self.deviceStore serviceConfigForUUID:description.UUID];
-
+    
     if (!serviceConfig)
         serviceConfig = [[ServiceConfig alloc] initWithServiceDescription:description];
-
+    
     serviceConfig.delegate = self;
-
+    
     __block BOOL deviceAlreadyHasServiceType = NO;
     __block BOOL deviceAlreadyHasService = NO;
-
+    
     [device.services enumerateObjectsUsingBlock:^(DeviceService *obj, NSUInteger idx, BOOL *stop) {
         if ([obj.serviceDescription.serviceId isEqualToString:description.serviceId])
         {
             deviceAlreadyHasServiceType = YES;
-
+            
             if ([obj.serviceDescription.UUID isEqualToString:description.UUID])
                 deviceAlreadyHasService = YES;
-
+            
             *stop = YES;
         }
     }];
-
+    
     if (deviceAlreadyHasServiceType)
     {
         if (deviceAlreadyHasService)
@@ -654,10 +654,10 @@
             
             return;
         }
-
+        
         [device removeServiceWithId:description.serviceId];
     }
-
+    
     DeviceService *deviceService = [DeviceService deviceServiceWithClass:deviceServiceClass serviceConfig:serviceConfig];
     [deviceService setServiceDescription:description];
     [device addService:deviceService];
@@ -679,23 +679,23 @@
 - (ConnectableDevice *) lookupMatchingDeviceForDeviceStore:(ServiceConfig *)serviceConfig
 {
     __block ConnectableDevice *foundDevice;
-
+    
     @synchronized (_allDevices) {
         [_allDevices enumerateKeysAndObjectsUsingBlock:^(id key, ConnectableDevice *device, BOOL *deviceStop)
-        {
-            [device.services enumerateObjectsUsingBlock:^(DeviceService *service, NSUInteger serviceIdx, BOOL *serviceStop)
-            {
-                if ([service.serviceConfig.UUID isEqualToString:serviceConfig.UUID])
-                {
-                    foundDevice = device;
-
-                    *serviceStop = YES;
-                    *deviceStop = YES;
-                }
-            }];
-        }];
+         {
+             [device.services enumerateObjectsUsingBlock:^(DeviceService *service, NSUInteger serviceIdx, BOOL *serviceStop)
+              {
+                  if ([service.serviceConfig.UUID isEqualToString:serviceConfig.UUID])
+                  {
+                      foundDevice = device;
+                      
+                      *serviceStop = YES;
+                      *deviceStop = YES;
+                  }
+              }];
+         }];
     }
-
+    
     return foundDevice;
 }
 
@@ -708,9 +708,9 @@
         _currentPicker = [[DevicePicker alloc] init];
         
         [self.compatibleDevices enumerateKeysAndObjectsUsingBlock:^(NSString *address, ConnectableDevice *device, BOOL *stop)
-        {
-            [_currentPicker discoveryManager:self didFindDevice:device];
-        }];
+         {
+             [_currentPicker discoveryManager:self didFindDevice:device];
+         }];
     }
     
     return _currentPicker;
@@ -723,7 +723,7 @@
     if (_useDeviceStore && self.deviceStore)
     {
         ConnectableDevice *device = [self lookupMatchingDeviceForDeviceStore:serviceConfig];
-
+        
         if (device)
             [self.deviceStore updateDevice:device];
     }

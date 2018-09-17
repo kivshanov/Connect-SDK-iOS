@@ -35,20 +35,21 @@ NSString* machineName()
 {
     struct utsname systemInfo;
     uname(&systemInfo);
-
+    
     return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
 @interface SSDPDiscoveryProvider() <NSXMLParserDelegate>
 {
     NSString *_ssdpHostName;
-
+    
     NSArray *_serviceFilters;
     NSMutableDictionary *_foundServices;
-
+    
     NSTimer *_refreshTimer;
-
+    
     NSMutableDictionary *_helloDevices;
+    NSMutableDictionary *_deviceByeByeDates;
     NSOperationQueue *_locationLoadQueue;
 }
 
@@ -68,7 +69,7 @@ static double searchAttemptsBeforeKill = 6.0;
     if (self)
     {
         _ssdpHostName = [NSString stringWithFormat:@"%@:%d", kSSDP_multicast_address, kSSDP_port];
-
+        
         _foundServices = [[NSMutableDictionary alloc] init];
         _serviceFilters = [[NSMutableArray alloc] init];
         
@@ -92,16 +93,43 @@ static double searchAttemptsBeforeKill = 6.0;
     }
 }
 
++ (void) logToFile: (NSString *) content {
+    [SSDPDiscoveryProvider writeAndAppendString:content toFile:@"connectsdk_log.txt"];
+}
+
++ (void)writeAndAppendString:(NSString *)str toFile:(NSString *)fileName {
+    
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    if (0 < [paths count]) {
+        NSString *documentsDirPath = [paths objectAtIndex:0];
+        NSString *filePath = [documentsDirPath stringByAppendingPathComponent:fileName];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:filePath]) {
+            // Add the text at the end of the file.
+            NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+            [fileHandler seekToEndOfFile];
+            [fileHandler writeData:data];
+            [fileHandler closeFile];
+        } else {
+            // Create the file and write text to it.
+            [data writeToFile:filePath atomically:YES];
+        }
+    }
+}
+
 - (void) stopDiscovery
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-
+    
     if (_searchSocket)
         [_searchSocket close];
-
+    
     if (_multicastSocket)
         [_multicastSocket close];
-
+    
     if (_refreshTimer)
         [_refreshTimer invalidate];
     
@@ -135,7 +163,7 @@ static double searchAttemptsBeforeKill = 6.0;
     
     NSString *searchFilter = [ssdpInfo objectForKey:@"filter"];
     _assert_state(searchFilter != nil, @"The ssdp info for this device filter has no search filter parameter");
-
+    
     _serviceFilters = [_serviceFilters arrayByAddingObject:parameters];
 }
 
@@ -186,30 +214,30 @@ static double searchAttemptsBeforeKill = 6.0;
         
         // 6 detection attempts, if still not present then kill it.
         double killPoint = [[NSDate date] timeIntervalSince1970] - (refreshTime * searchAttemptsBeforeKill);
-
+        
         @synchronized (_foundServices)
         {
             for (NSString *key in _foundServices)
             {
                 ServiceDescription *service = (ServiceDescription *) [_foundServices objectForKey:key];
-
+                
                 if (service.lastDetection < killPoint)
                 {
                     [killKeys addObject:key];
                     refresh = YES;
                 }
             }
-
+            
             if (refresh)
             {
                 [killKeys enumerateObjectsUsingBlock:^(id key, NSUInteger idx, BOOL *stop)
-                {
-                    ServiceDescription *service = [_foundServices objectForKey:key];
-
-                    [self notifyDelegateOfLostService:service];
-
-                    [_foundServices removeObjectForKey:key];
-                }];
+                 {
+                     ServiceDescription *service = [_foundServices objectForKey:key];
+                     
+                     [self notifyDelegateOfLostService:service];
+                     
+                     [_foundServices removeObjectForKey:key];
+                 }];
             }
         }
     }
@@ -221,23 +249,23 @@ static double searchAttemptsBeforeKill = 6.0;
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("MX"), CFSTR("5"));
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("ST"),  (__bridge  CFStringRef)filter);
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("USER-AGENT"), (__bridge CFStringRef)[self userAgentForToken:userAgentToken]);
-
+    
     NSData *message = CFBridgingRelease(CFHTTPMessageCopySerializedMessage(theSearchRequest));
     
     if (!_searchSocket)
     {
-		_searchSocket = [[SSDPSocketListener alloc] initWithAddress:kSSDP_multicast_address andPort:0];
-		_searchSocket.delegate = self;
+        _searchSocket = [[SSDPSocketListener alloc] initWithAddress:kSSDP_multicast_address andPort:0];
+        _searchSocket.delegate = self;
         [_searchSocket open];
     }
-
+    
     if (!_multicastSocket)
     {
-		_multicastSocket = [[SSDPSocketListener alloc] initWithAddress:kSSDP_multicast_address andPort:kSSDP_port];
-		_multicastSocket.delegate = self;
+        _multicastSocket = [[SSDPSocketListener alloc] initWithAddress:kSSDP_multicast_address andPort:kSSDP_port];
+        _multicastSocket.delegate = self;
         [_multicastSocket open];
     }
-
+    
     [_searchSocket sendData:message toAddress:kSSDP_multicast_address andPort:kSSDP_port];
     [self performBlock:^{ [_searchSocket sendData:message toAddress:kSSDP_multicast_address andPort:kSSDP_port]; } afterDelay:1];
     [self performBlock:^{ [_searchSocket sendData:message toAddress:kSSDP_multicast_address andPort:kSSDP_port]; } afterDelay:2];
@@ -253,20 +281,20 @@ static double searchAttemptsBeforeKill = 6.0;
 {
     // Try to create a HTTPMessage from received data.
     
-	CFHTTPMessageRef theHTTPMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
-	CFHTTPMessageAppendBytes(theHTTPMessage, aData.bytes, aData.length);
-
+    CFHTTPMessageRef theHTTPMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
+    CFHTTPMessageAppendBytes(theHTTPMessage, aData.bytes, aData.length);
+    
     // We awaiting for receiving a complete header. If it not - just skip it.
-	if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))
-	{
+    if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))
+    {
         
         // Receive some important data from the header
-		NSString *theRequestMethod = CFBridgingRelease (CFHTTPMessageCopyRequestMethod(theHTTPMessage));
-		NSInteger theCode = CFHTTPMessageGetResponseStatusCode(theHTTPMessage);
-		NSDictionary *theHeaderDictionary = CFBridgingRelease(CFHTTPMessageCopyAllHeaderFields(theHTTPMessage));
+        NSString *theRequestMethod = CFBridgingRelease (CFHTTPMessageCopyRequestMethod(theHTTPMessage));
+        NSInteger theCode = CFHTTPMessageGetResponseStatusCode(theHTTPMessage);
+        NSDictionary *theHeaderDictionary = CFBridgingRelease(CFHTTPMessageCopyAllHeaderFields(theHTTPMessage));
         
-		BOOL isNotify = [theRequestMethod isEqualToString:@"NOTIFY"];
-		NSString *theType = (isNotify) ? theHeaderDictionary[@"NT"] : theHeaderDictionary[@"ST"];
+        BOOL isNotify = [theRequestMethod isEqualToString:@"NOTIFY"];
+        NSString *theType = (isNotify) ? theHeaderDictionary[@"NT"] : theHeaderDictionary[@"ST"];
         
         // There is 3 possible methods in SSDP:
         // 1) M-SEARCH - for search requests - skip it
@@ -275,7 +303,7 @@ static double searchAttemptsBeforeKill = 6.0;
         
         // Obtain a unique service id ID - USN.
         NSString *theUSSNKey = theHeaderDictionary[@"USN"];
-
+        
         if ((theCode == 200) &&
             ![theRequestMethod isEqualToString:@"M-SEARCH"] &&
             [self isSearchingForFilter:theType] &&
@@ -296,35 +324,46 @@ static double searchAttemptsBeforeKill = 6.0;
                 // If it is a NOTIFY - byebye message - try to find a device from a list and send him byebye
                 if ([theHeaderDictionary[@"NTS"] isEqualToString:@"ssdp:byebye"])
                 {
+                    if (_deviceByeByeDates == nil) {
+                        _deviceByeByeDates = [[NSMutableDictionary alloc] init];
+                    }
+                    [_deviceByeByeDates setObject:[NSDate date] forKey: theUUID];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We receive ssdp:byebye for udid: %@\n", [NSDate date], theUUID]];
                     @synchronized (_foundServices)
                     {
                         ServiceDescription *theService = _foundServices[theUUID];
-
+                        
                         if (theService != nil)
                         {
                             [self notifyDelegateOfLostService:theService];
-
+                            
                             [_foundServices removeObjectForKey:theUUID];
-
+                            
                             theService = nil;
                         }
                     }
                 } else
                 {
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We receive location for udid: %@\n", [NSDate date], theUUID]];
+                    NSDate *byebyeDate = [_deviceByeByeDates objectForKey:theUUID];
+                    if (byebyeDate != nil && fabs([byebyeDate timeIntervalSinceNow]) < 6) {
+                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We won't add new device, because of 6 sec rule!\n", [NSDate date]]];
+                        return;
+                    }
                     NSString *location = [theHeaderDictionary objectForKey:@"Location"];
-
+                    
                     if (location && location.length > 0)
                     {
                         // Advertising or search-respond
                         // Try to figure out if the device has been dicovered yet
                         ServiceDescription *foundService;
                         ServiceDescription *helloService;
-
+                        
                         @synchronized(_foundServices) { foundService = [_foundServices objectForKey:theUUID]; }
                         @synchronized(_helloDevices) { helloService = [_helloDevices objectForKey:theUUID]; }
-
+                        
                         BOOL isNew = NO;
-
+                        
                         // If it isn't  - create a new device object and add it to device list
                         if (foundService == nil && helloService == nil)
                         {
@@ -336,9 +375,9 @@ static double searchAttemptsBeforeKill = 6.0;
                             foundService.port = 3001;
                             isNew = YES;
                         }
-
+                        
                         foundService.lastDetection = [[NSDate date] timeIntervalSince1970];
-
+                        
                         // If device - newly-created one notify about it's discovering
                         if (isNew)
                         {
@@ -346,19 +385,19 @@ static double searchAttemptsBeforeKill = 6.0;
                             {
                                 if (_helloDevices == nil)
                                     _helloDevices = [NSMutableDictionary dictionary];
-
+                                
                                 [_helloDevices setObject:foundService forKey:theUUID];
                             }
-
+                            
                             [self getLocationData:location forKey:theUUID andType:theType];
                         }
                     }
                 }
             }
-		}
-	}
+        }
+    }
     
-	CFRelease(theHTTPMessage);
+    CFRelease(theHTTPMessage);
 }
 
 - (void) getLocationData:(NSString*)url forKey:(NSString*)UUID andType:(NSString *)theType
@@ -368,21 +407,22 @@ static double searchAttemptsBeforeKill = 6.0;
     [NSURLConnection sendAsynchronousRequest:request queue:_locationLoadQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSError *xmlError;
         NSDictionary *xml = [CTXMLReader dictionaryForXMLData:data error:&xmlError];
-
+        
         if (!xmlError)
         {
             NSDictionary *device = [self device:[xml valueForKeyPath:@"root.device"]
                    containingServicesWithFilter:theType];
-
+            
             if (device)
             {
                 ServiceDescription *service;
                 @synchronized(_helloDevices) { service = [_helloDevices objectForKey:UUID]; }
-
+                
                 if (service)
                 {
                     service.type = theType;
                     service.friendlyName = [device valueForKeyPath:@"friendlyName.text"];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We have new service and will call the delegate: %@\n", [NSDate date], service.friendlyName]];
                     service.modelName = [[device objectForKey:@"modelName"] objectForKey:@"text"];
                     service.modelNumber = [[device objectForKey:@"modelNumber"] objectForKey:@"text"];
                     service.modelDescription = [[device objectForKey:@"modelDescription"] objectForKey:@"text"];
@@ -391,9 +431,9 @@ static double searchAttemptsBeforeKill = 6.0;
                     service.serviceList = [self serviceListForDevice:device];
                     service.commandURL = response.URL;
                     service.locationResponseHeaders = [((NSHTTPURLResponse *)response) allHeaderFields];
-
+                    
                     @synchronized(_foundServices) { [_foundServices setObject:service forKey:UUID]; }
-
+                    
                     [self notifyDelegateOfNewService:service];
                 }
             }
@@ -406,11 +446,11 @@ static double searchAttemptsBeforeKill = 6.0;
 - (void) notifyDelegateOfNewService:(ServiceDescription *)service
 {
     NSArray *serviceIds = [self serviceIdsForFilter:service.type];
-
+    
     [serviceIds enumerateObjectsUsingBlock:^(NSString *serviceId, NSUInteger idx, BOOL *stop) {
         ServiceDescription *newService = [service copy];
         newService.serviceId = serviceId;
-
+        
         dispatch_on_main(^{ [self.delegate discoveryProvider:self didFindService:newService]; });
     }];
 }
@@ -418,11 +458,11 @@ static double searchAttemptsBeforeKill = 6.0;
 - (void) notifyDelegateOfLostService:(ServiceDescription *)service
 {
     NSArray *serviceIds = [self serviceIdsForFilter:service.type];
-
+    
     [serviceIds enumerateObjectsUsingBlock:^(NSString *serviceId, NSUInteger idx, BOOL *stop) {
         ServiceDescription *newService = [service copy];
         newService.serviceId = serviceId;
-
+        
         dispatch_on_main(^{ [self.delegate discoveryProvider:self didLoseService:newService]; });
     }];
 }
@@ -432,7 +472,7 @@ static double searchAttemptsBeforeKill = 6.0;
 - (BOOL) isSearchingForFilter:(NSString *)filter
 {
     __block BOOL containsFilter = NO;
-
+    
     [_serviceFilters enumerateObjectsUsingBlock:^(NSDictionary *serviceFilter, NSUInteger idx, BOOL *stop) {
         NSString *ssdpFilter = [[serviceFilter objectForKey:@"ssdp" ] objectForKey:@"filter"];
         
@@ -461,13 +501,13 @@ static double searchAttemptsBeforeKill = 6.0;
     id serviceList = [device valueForKeyPath:@"serviceList.service"];
     NSArray *discoveredServices;
     NSString *const kServiceTypeKeyPath = @"serviceType.text";
-
+    
     if ([serviceList isKindOfClass:[NSDictionary class]]) {
         discoveredServices = [NSArray arrayWithObject:[serviceList valueForKeyPath:kServiceTypeKeyPath]];
     } else if ([serviceList isKindOfClass:[NSArray class]]) {
         discoveredServices = [serviceList valueForKeyPath:kServiceTypeKeyPath];
     }
-
+    
     return discoveredServices;
 }
 
@@ -488,18 +528,18 @@ containingRequiredServices:(NSArray *)requiredServices {
     NSArray *discoveredServices = [self discoveredServicesInDevice:device];
     const BOOL deviceHasAllRequiredServices = [self allRequiredServices:requiredServices
                                                 areInDiscoveredServices:discoveredServices];
-
+    
     if (deviceHasAllRequiredServices) {
         return device;
     }
-
+    
     // try to iterate through all the child devices
     NSArray *subDevices = [device valueForKeyPath:@"deviceList.device"];
     if (subDevices) {
         if (![subDevices isKindOfClass:[NSArray class]]) {
             subDevices = [NSArray arrayWithObject:subDevices];
         }
-
+        
         for (NSDictionary *subDevice in subDevices) {
             NSDictionary *foundDevice = [self device:subDevice
                           containingRequiredServices:requiredServices];
@@ -508,7 +548,7 @@ containingRequiredServices:(NSArray *)requiredServices {
             }
         }
     }
-
+    
     return nil;
 }
 
@@ -538,14 +578,14 @@ containingRequiredServices:requiredServices];
 - (NSArray *) serviceListForDevice:(id)device
 {
     NSMutableArray *list = [NSMutableArray new];
-
+    
     id serviceList = device[@"serviceList"][@"service"];
-
+    
     if ([serviceList isKindOfClass:[NSArray class]])
         [list addObjectsFromArray:serviceList];
     else if ([serviceList isKindOfClass:[NSDictionary class]])
         [list addObject:serviceList];
-
+    
     NSArray *devices = nil;
     id devicesObject = device[@"deviceList"][@"device"];
     if ([devicesObject isKindOfClass:[NSArray class]]) {
@@ -553,19 +593,19 @@ containingRequiredServices:requiredServices];
     } else if ([devicesObject isKindOfClass:[NSDictionary class]]) {
         devices = [NSArray arrayWithObject:devicesObject];
     }
-
+    
     if (devices)
     {
         [devices enumerateObjectsUsingBlock:^(id deviceInfo, NSUInteger idx, BOOL *stop) {
             id services = deviceInfo[@"serviceList"][@"service"];
-
+            
             if ([services isKindOfClass:[NSArray class]])
                 [list addObjectsFromArray:services];
             else if ([services isKindOfClass:[NSDictionary class]])
                 [list addObject:services];
         }];
     }
-
+    
     return [NSArray arrayWithArray:list];
 }
 
@@ -584,7 +624,7 @@ containingRequiredServices:requiredServices];
 {
     if (!token)
         token = @"UPnP/1.1";
-
+    
     return [NSString stringWithFormat:
             @"%@/%@ %@ ConnectSDK/%@",
             [UIDevice currentDevice].systemName,
