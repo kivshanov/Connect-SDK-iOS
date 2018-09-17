@@ -33,10 +33,10 @@
  */
 typedef enum {
     /*! Enables support for web apps via Apple's [External Display](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/WindowAndScreenGuide/UsingExternalDisplay/UsingExternalDisplay.html) APIs */
-    AirPlayServiceModeWebApp = 0,
-
+    AirPlayServiceModeWebApp = 1,
+    
     /*! Enables support for media (image, video, audio) by way of [HTTP commands](http://nto.github.io/AirPlay.html) */
-    AirPlayServiceModeMedia
+    AirPlayServiceModeMedia = 0
 } AirPlayServiceMode;
 
 /*!

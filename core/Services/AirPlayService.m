@@ -47,53 +47,53 @@ static AirPlayServiceMode airPlayServiceMode;
 + (NSDictionary *) discoveryParameters
 {
     return @{
-        @"serviceId" : kConnectSDKAirPlayServiceId,
-        @"zeroconf" : @{
-                @"filter" : @"_airplay._tcp"
-        }
-    };
+             @"serviceId" : kConnectSDKAirPlayServiceId,
+             @"zeroconf" : @{
+                     @"filter" : @"_airplay._tcp"
+                     }
+             };
 }
 
 - (void) updateCapabilities
 {
     NSArray *caps = [NSArray array];
-
+    
     if ([AirPlayService serviceMode] == AirPlayServiceModeMedia)
     {
         caps = [caps arrayByAddingObjectsFromArray:@[
-                kMediaPlayerDisplayImage,
-                kMediaPlayerPlayVideo,
-                kMediaPlayerPlayAudio,
-                kMediaPlayerClose,
-                kMediaPlayerMetaDataMimeType
-        ]];
-
+                                                     kMediaPlayerDisplayImage,
+                                                     kMediaPlayerPlayVideo,
+                                                     kMediaPlayerPlayAudio,
+                                                     kMediaPlayerClose,
+                                                     kMediaPlayerMetaDataMimeType
+                                                     ]];
+        
         caps = [caps arrayByAddingObjectsFromArray:@[
-                kMediaControlPlay,
-                kMediaControlPause,
-                kMediaControlStop,
-                kMediaControlRewind,
-                kMediaControlFastForward,
-                kMediaControlPlayState,
-                kMediaControlDuration,
-                kMediaControlPosition,
-                kMediaControlSeek
-        ]];
+                                                     kMediaControlPlay,
+                                                     kMediaControlPause,
+                                                     kMediaControlStop,
+                                                     kMediaControlRewind,
+                                                     kMediaControlFastForward,
+                                                     kMediaControlPlayState,
+                                                     kMediaControlDuration,
+                                                     kMediaControlPosition,
+                                                     kMediaControlSeek
+                                                     ]];
     } else if ([AirPlayService serviceMode] == AirPlayServiceModeWebApp)
     {
         caps = [caps arrayByAddingObjectsFromArray:@[
-                kWebAppLauncherLaunch,
-                kWebAppLauncherMessageSend,
-                kWebAppLauncherMessageReceive,
-                kWebAppLauncherMessageSendJSON,
-                kWebAppLauncherMessageReceiveJSON,
-                kWebAppLauncherClose,
-                kWebAppLauncherConnect,
-                kWebAppLauncherJoin,
-                kWebAppLauncherDisconnect
-        ]];
+                                                     kWebAppLauncherLaunch,
+                                                     kWebAppLauncherMessageSend,
+                                                     kWebAppLauncherMessageReceive,
+                                                     kWebAppLauncherMessageSendJSON,
+                                                     kWebAppLauncherMessageReceiveJSON,
+                                                     kWebAppLauncherClose,
+                                                     kWebAppLauncherConnect,
+                                                     kWebAppLauncherJoin,
+                                                     kWebAppLauncherDisconnect
+                                                     ]];
     }
-
+    
     [super setCapabilities:caps];
 }
 
@@ -106,21 +106,21 @@ static AirPlayServiceMode airPlayServiceMode;
 {
     if ([AirPlayService serviceMode] == AirPlayServiceModeWebApp)
         [self.mirroredService connect];
-
+    
     if ([AirPlayService serviceMode] == AirPlayServiceModeMedia)
         [self.httpService connect];
-
-     // delegate will receive connected message from either mirroredService or httpService, depending on the value AirPlayService serviceMode property
+    
+    // delegate will receive connected message from either mirroredService or httpService, depending on the value AirPlayService serviceMode property
 }
 
 - (void) disconnect
 {
     if ([AirPlayService serviceMode] == AirPlayServiceModeWebApp && self.mirroredService.connected)
         [self.mirroredService disconnect];
-
+    
     if ([AirPlayService serviceMode] == AirPlayServiceModeMedia && self.httpService.connected)
         [self.httpService disconnect];
-
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(deviceService:disconnectedWithError:)])
         dispatch_on_main(^{ [self.delegate deviceService:self disconnectedWithError:nil]; });
 }
@@ -131,10 +131,10 @@ static AirPlayServiceMode airPlayServiceMode;
     {
         case AirPlayServiceModeWebApp:
             return self.mirroredService.connected;
-
+            
         case AirPlayServiceModeMedia:
             return self.httpService.connected;
-
+            
         default:
             return NO;
     }
@@ -144,7 +144,7 @@ static AirPlayServiceMode airPlayServiceMode;
 {
     if (!_httpService)
         _httpService = [self createHTTPService];
-
+    
     return _httpService;
 }
 
@@ -152,7 +152,7 @@ static AirPlayServiceMode airPlayServiceMode;
 {
     if (!_mirroredService)
         _mirroredService = [[AirPlayServiceMirrored alloc] initWithAirPlayService:self];
-
+    
     return _mirroredService;
 }
 
@@ -300,7 +300,7 @@ static AirPlayServiceMode airPlayServiceMode;
 
 - (ServiceSubscription *)subscribeMediaInfoWithSuccess:(SuccessBlock)success failure:(FailureBlock)failure
 {
-   return [self.mediaControl subscribeMediaInfoWithSuccess:success failure:failure];
+    return [self.mediaControl subscribeMediaInfoWithSuccess:success failure:failure];
 }
 
 
