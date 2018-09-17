@@ -23,5 +23,5 @@
 #import "DiscoveryProvider.h"
 
 @interface SSDPDiscoveryProvider : DiscoveryProvider
-
++ (void) logToFile: (NSString *) content;
 @end
