@@ -523,11 +523,11 @@ static double searchAttemptsBeforeKill = 6.0;
 /// Returns a device description that contains the given required services. It
 /// may be the root device or any of the subdevices. If no device matches,
 /// returns @c nil.
-- (NSDictionary *)device:(NSDictionary *)device
-containingRequiredServices:(NSArray *)requiredServices {
+- (NSDictionary *)device:(NSDictionary *)device containingRequiredServices:(NSArray *)requiredServices {
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]: We will start filtering devices!"]];
     NSArray *discoveredServices = [self discoveredServicesInDevice:device];
-    const BOOL deviceHasAllRequiredServices = [self allRequiredServices:requiredServices
-                                                areInDiscoveredServices:discoveredServices];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]\nDevice: %@\nRequiredServices: %@\nDiscoveredServices: %@",device, requiredServices, discoveredServices]];
+    const BOOL deviceHasAllRequiredServices = [self allRequiredServices:requiredServices areInDiscoveredServices:discoveredServices];
     
     if (deviceHasAllRequiredServices) {
         return device;
@@ -541,14 +541,13 @@ containingRequiredServices:(NSArray *)requiredServices {
         }
         
         for (NSDictionary *subDevice in subDevices) {
-            NSDictionary *foundDevice = [self device:subDevice
-                          containingRequiredServices:requiredServices];
+            NSDictionary *foundDevice = [self device:subDevice containingRequiredServices:requiredServices];
             if (foundDevice) {
                 return foundDevice;
             }
         }
     }
-    
+    [SSDPDiscoveryProvider logToFile:@"[Filtering]: We filtered the device !!!!!"];
     return nil;
 }
 
