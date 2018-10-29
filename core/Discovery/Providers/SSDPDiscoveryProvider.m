@@ -69,7 +69,6 @@ static double searchAttemptsBeforeKill = 6.0;
     if (self)
     {
         _ssdpHostName = [NSString stringWithFormat:@"%@:%d", kSSDP_multicast_address, kSSDP_port];
-        _logging = NO;
         _foundServices = [[NSMutableDictionary alloc] init];
         _serviceFilters = [[NSMutableArray alloc] init];
         
