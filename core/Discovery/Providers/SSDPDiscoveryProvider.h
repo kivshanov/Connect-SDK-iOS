@@ -21,7 +21,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DiscoveryProvider.h"
-
 @interface SSDPDiscoveryProvider : DiscoveryProvider
 + (void) logToFile: (NSString *) content;
++ (void) enableLogging;
 @end

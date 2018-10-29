@@ -42,7 +42,6 @@ NSString* machineName()
 @interface SSDPDiscoveryProvider() <NSXMLParserDelegate>
 {
     NSString *_ssdpHostName;
-    
     NSArray *_serviceFilters;
     NSMutableDictionary *_foundServices;
     
@@ -55,6 +54,7 @@ NSString* machineName()
 
 @end
 
+static BOOL _logging;
 @implementation SSDPDiscoveryProvider
 
 static double refreshTime = 10.0;
@@ -69,7 +69,7 @@ static double searchAttemptsBeforeKill = 6.0;
     if (self)
     {
         _ssdpHostName = [NSString stringWithFormat:@"%@:%d", kSSDP_multicast_address, kSSDP_port];
-        
+        _logging = NO;
         _foundServices = [[NSMutableDictionary alloc] init];
         _serviceFilters = [[NSMutableArray alloc] init];
         
@@ -93,8 +93,14 @@ static double searchAttemptsBeforeKill = 6.0;
     }
 }
 
++ (void) enableLogging {
+    _logging = YES;
+}
+
 + (void) logToFile: (NSString *) content {
-    [SSDPDiscoveryProvider writeAndAppendString:content toFile:@"connectsdk_log.txt"];
+    if (_logging){
+        [SSDPDiscoveryProvider writeAndAppendString:content toFile:@"connectsdk_log.txt"];
+    }
 }
 
 + (void)writeAndAppendString:(NSString *)str toFile:(NSString *)fileName {
