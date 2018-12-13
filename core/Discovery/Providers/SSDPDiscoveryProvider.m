@@ -310,15 +310,15 @@ static double searchAttemptsBeforeKill = 6.0;
         
         BOOL first = (theCode == 200);
         if (first == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d", theCode]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d\n", theCode]];
         }
         BOOL second = ![theRequestMethod isEqualToString:@"M-SEARCH"];
         if (second == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@", theRequestMethod]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@\n", theRequestMethod]];
         }
         BOOL third = [self isSearchingForFilter:theType];
         if (third == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO"]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO. The type is %@\n", theType]];
         }
         BOOL fourth = (theUSSNKey.length > 0);
         
@@ -410,15 +410,15 @@ static double searchAttemptsBeforeKill = 6.0;
                 }
             }
             else {
-                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff"]];
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff\n"]];
             }
         }
         else {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if"]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if\n"]];
         }
     }
     else {
-        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))"]];
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))\n"]];
     }
     
     CFRelease(theHTTPMessage);
@@ -496,7 +496,7 @@ static double searchAttemptsBeforeKill = 6.0;
 - (BOOL) isSearchingForFilter:(NSString *)filter
 {
     __block BOOL containsFilter = NO;
-    
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"These are the service filters: %@\n", _serviceFilters]];
     [_serviceFilters enumerateObjectsUsingBlock:^(NSDictionary *serviceFilter, NSUInteger idx, BOOL *stop) {
         NSString *ssdpFilter = [[serviceFilter objectForKey:@"ssdp" ] objectForKey:@"filter"];
         
@@ -657,4 +657,3 @@ containingRequiredServices:requiredServices];
 }
 
 @end
-
