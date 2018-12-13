@@ -253,7 +253,6 @@ static double searchAttemptsBeforeKill = 6.0;
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("MAN"), CFSTR("\"ssdp:discover\""));
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("MX"), CFSTR("5"));
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("ST"),  (__bridge  CFStringRef)filter);
-    CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("USER-AGENT"), (__bridge CFStringRef)[self userAgentForToken:userAgentToken]);
     
     NSData *message = CFBridgingRelease(CFHTTPMessageCopySerializedMessage(theSearchRequest));
     
@@ -284,7 +283,7 @@ static double searchAttemptsBeforeKill = 6.0;
 //* All messages from devices handling here
 - (void)socket:(SSDPSocketListener *)aSocket didReceiveData:(NSData *)aData fromAddress:(NSString *)anAddress
 {
-    // Try to create a HTTPMessage from received data.
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"didReceiveData called\n"]];
     
     CFHTTPMessageRef theHTTPMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     CFHTTPMessageAppendBytes(theHTTPMessage, aData.bytes, aData.length);
@@ -399,7 +398,16 @@ static double searchAttemptsBeforeKill = 6.0;
                     }
                 }
             }
+            else {
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff"]];
+            }
         }
+        else {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if"]];
+        }
+    }
+    else {
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))"]];
     }
     
     CFRelease(theHTTPMessage);
