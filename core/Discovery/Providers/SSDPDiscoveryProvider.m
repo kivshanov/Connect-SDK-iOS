@@ -308,10 +308,21 @@ static double searchAttemptsBeforeKill = 6.0;
         // Obtain a unique service id ID - USN.
         NSString *theUSSNKey = theHeaderDictionary[@"USN"];
         
-        if ((theCode == 200) &&
-            ![theRequestMethod isEqualToString:@"M-SEARCH"] &&
-            [self isSearchingForFilter:theType] &&
-            (theUSSNKey.length > 0))
+        BOOL first = (theCode == 200);
+        if (first == false) {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d", theCode]];
+        }
+        BOOL second = ![theRequestMethod isEqualToString:@"M-SEARCH"];
+        if (second == false) {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@", theRequestMethod]];
+        }
+        BOOL third = [self isSearchingForFilter:theType];
+        if (third == false) {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO"]];
+        }
+        BOOL fourth = (theUSSNKey.length > 0);
+        
+        if (first && second && third && fourth)
         {
             //Extract the UUID
             NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"(?:uuid:).*(?:::)" options:0 error:nil];
@@ -646,3 +657,4 @@ containingRequiredServices:requiredServices];
 }
 
 @end
+
