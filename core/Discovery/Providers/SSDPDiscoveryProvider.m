@@ -98,7 +98,8 @@ static double searchAttemptsBeforeKill = 6.0;
 
 + (void) logToFile: (NSString *) content {
     if (_logging){
-        [SSDPDiscoveryProvider writeAndAppendString:content toFile:@"connectsdk_log.txt"];
+        NSString *final = [NSString stringWithFormat:@"%@  %@\n\n\n", [NSDate date], content];
+        [SSDPDiscoveryProvider writeAndAppendString:final toFile:@"connectsdk_log.txt"];
     }
 }
 
@@ -283,7 +284,7 @@ static double searchAttemptsBeforeKill = 6.0;
 //* All messages from devices handling here
 - (void)socket:(SSDPSocketListener *)aSocket didReceiveData:(NSData *)aData fromAddress:(NSString *)anAddress
 {
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"didReceiveData called\n"]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"didReceiveData called"]];
     
     CFHTTPMessageRef theHTTPMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     CFHTTPMessageAppendBytes(theHTTPMessage, aData.bytes, aData.length);
@@ -310,15 +311,15 @@ static double searchAttemptsBeforeKill = 6.0;
         
         BOOL first = (theCode == 200);
         if (first == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d\n", theCode]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d", theCode]];
         }
         BOOL second = ![theRequestMethod isEqualToString:@"M-SEARCH"];
         if (second == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@\n", theRequestMethod]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@", theRequestMethod]];
         }
         BOOL third = [self isSearchingForFilter:theType];
         if (third == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO. The type is %@\n", theType]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO. The type is %@", theType]];
         }
         BOOL fourth = (theUSSNKey.length > 0);
         
@@ -343,7 +344,7 @@ static double searchAttemptsBeforeKill = 6.0;
                         _deviceByeByeDates = [[NSMutableDictionary alloc] init];
                     }
                     [_deviceByeByeDates setObject:[NSDate date] forKey: theUUID];
-                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We receive ssdp:byebye for udid: %@\n", [NSDate date], theUUID]];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We receive ssdp:byebye for udid: %@", theUUID]];
                     @synchronized (_foundServices)
                     {
                         ServiceDescription *theService = _foundServices[theUUID];
@@ -359,10 +360,10 @@ static double searchAttemptsBeforeKill = 6.0;
                     }
                 } else
                 {
-                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We receive location for udid: %@\n", [NSDate date], theUUID]];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We receive location for udid: %@", theUUID]];
                     NSDate *byebyeDate = [_deviceByeByeDates objectForKey:theUUID];
                     if (byebyeDate != nil && fabs([byebyeDate timeIntervalSinceNow]) < 6) {
-                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We won't add new device, because of 6 sec rule!\n", [NSDate date]]];
+                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We won't add new device, because of 6 sec rule!"]];
                         return;
                     }
                     NSString *location = [theHeaderDictionary objectForKey:@"Location"];
@@ -410,15 +411,15 @@ static double searchAttemptsBeforeKill = 6.0;
                 }
             }
             else {
-                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff\n"]];
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff"]];
             }
         }
         else {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if\n"]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if"]];
         }
     }
     else {
-        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))\n"]];
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))"]];
     }
     
     CFRelease(theHTTPMessage);
@@ -446,7 +447,7 @@ static double searchAttemptsBeforeKill = 6.0;
                 {
                     service.type = theType;
                     service.friendlyName = [device valueForKeyPath:@"friendlyName.text"];
-                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"%@ We have new service and will call the delegate: %@\n", [NSDate date], service.friendlyName]];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have new service and will call the delegate: %@", service.friendlyName]];
                     service.modelName = [[device objectForKey:@"modelName"] objectForKey:@"text"];
                     service.modelNumber = [[device objectForKey:@"modelNumber"] objectForKey:@"text"];
                     service.modelDescription = [[device objectForKey:@"modelDescription"] objectForKey:@"text"];
@@ -496,7 +497,7 @@ static double searchAttemptsBeforeKill = 6.0;
 - (BOOL) isSearchingForFilter:(NSString *)filter
 {
     __block BOOL containsFilter = NO;
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"These are the service filters: %@\n", _serviceFilters]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"These are the service filters: %@", _serviceFilters]];
     [_serviceFilters enumerateObjectsUsingBlock:^(NSDictionary *serviceFilter, NSUInteger idx, BOOL *stop) {
         NSString *ssdpFilter = [[serviceFilter objectForKey:@"ssdp" ] objectForKey:@"filter"];
         
