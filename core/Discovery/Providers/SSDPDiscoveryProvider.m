@@ -96,10 +96,14 @@ static double searchAttemptsBeforeKill = 6.0;
     _logging = YES;
 }
 
-+ (void) logToFile: (NSString *) content {
++ (void) logToFile: (NSString *) content filename:(NSString *) filename {
     if (_logging){
+        NSString *logFile = @"connectsdk_log.txt";
+        if (filename != NULL) {
+            logFile = filename;
+        }
         NSString *final = [NSString stringWithFormat:@"%@  %@\n\n\n", [NSDate date], content];
-        [SSDPDiscoveryProvider writeAndAppendString:final toFile:@"connectsdk_log.txt"];
+        [SSDPDiscoveryProvider writeAndAppendString:final toFile:logFile];
     }
 }
 
@@ -154,6 +158,7 @@ static double searchAttemptsBeforeKill = 6.0;
 {
     if (_refreshTimer == nil)
     {
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will start the 10 seconds timer."] filename:@"SSDP_debugging.txt"];
         _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:refreshTime target:self selector:@selector(sendSearchRequests:) userInfo:nil repeats:YES];
         
         [self sendSearchRequests:NO];
@@ -171,6 +176,7 @@ static double searchAttemptsBeforeKill = 6.0;
     _assert_state(searchFilter != nil, @"The ssdp info for this device filter has no search filter parameter");
     
     _serviceFilters = [_serviceFilters arrayByAddingObject:parameters];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We are setting these serviceFilters: %@", _serviceFilters] filename:@"SSDP_debugging.txt"];
 }
 
 - (void)removeDeviceFilter:(NSDictionary *)parameters
@@ -206,7 +212,7 @@ static double searchAttemptsBeforeKill = 6.0;
         NSDictionary *ssdpInfo = [info objectForKey:@"ssdp"];
         NSString *searchFilter = [ssdpInfo objectForKey:@"filter"];
         NSString *userAgentToken = [ssdpInfo objectForKey:@"userAgentToken"];
-        
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will send sendSearchRequests for filter %@ and userAgent %@", searchFilter, userAgentToken] filename:@"SSDP_debugging.txt"];
         [self sendRequestForFilter:searchFilter userAgentToken:userAgentToken killInactiveDevices:shouldKillInactiveDevices];
     }];
 }
@@ -256,11 +262,13 @@ static double searchAttemptsBeforeKill = 6.0;
     CFHTTPMessageSetHeaderFieldValue(theSearchRequest, CFSTR("ST"),  (__bridge  CFStringRef)filter);
     
     NSData *message = CFBridgingRelease(CFHTTPMessageCopySerializedMessage(theSearchRequest));
+    NSString *stringMessage = [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding];
     
     if (!_searchSocket)
     {
         _searchSocket = [[SSDPSocketListener alloc] initWithAddress:kSSDP_multicast_address andPort:0];
         _searchSocket.delegate = self;
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will open socket 1 on %@ and port 0", kSSDP_multicast_address] filename:@"SSDP_debugging.txt"];
         [_searchSocket open];
     }
     
@@ -268,9 +276,10 @@ static double searchAttemptsBeforeKill = 6.0;
     {
         _multicastSocket = [[SSDPSocketListener alloc] initWithAddress:kSSDP_multicast_address andPort:kSSDP_port];
         _multicastSocket.delegate = self;
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will open socket 2 on %@ and port 1900", kSSDP_multicast_address] filename:@"SSDP_debugging.txt"];
         [_multicastSocket open];
     }
-    
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Sending data from socket 1 to multicast address and port 1900: \n%@ ", stringMessage] filename:@"SSDP_debugging.txt"];
     [_searchSocket sendData:message toAddress:kSSDP_multicast_address andPort:kSSDP_port];
     [self performBlock:^{ [_searchSocket sendData:message toAddress:kSSDP_multicast_address andPort:kSSDP_port]; } afterDelay:1];
     [self performBlock:^{ [_searchSocket sendData:message toAddress:kSSDP_multicast_address andPort:kSSDP_port]; } afterDelay:2];
@@ -284,7 +293,8 @@ static double searchAttemptsBeforeKill = 6.0;
 //* All messages from devices handling here
 - (void)socket:(SSDPSocketListener *)aSocket didReceiveData:(NSData *)aData fromAddress:(NSString *)anAddress
 {
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"didReceiveData called"]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"didReceiveData called"] filename:NULL];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Socket with port %d received data from address %@\n\n\n", aSocket.port, anAddress] filename:@"SSDP_debugging.txt"];
     
     CFHTTPMessageRef theHTTPMessage = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, TRUE);
     CFHTTPMessageAppendBytes(theHTTPMessage, aData.bytes, aData.length);
@@ -292,7 +302,6 @@ static double searchAttemptsBeforeKill = 6.0;
     // We awaiting for receiving a complete header. If it not - just skip it.
     if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))
     {
-        
         // Receive some important data from the header
         NSString *theRequestMethod = CFBridgingRelease (CFHTTPMessageCopyRequestMethod(theHTTPMessage));
         NSInteger theCode = CFHTTPMessageGetResponseStatusCode(theHTTPMessage);
@@ -308,25 +317,28 @@ static double searchAttemptsBeforeKill = 6.0;
         
         // Obtain a unique service id ID - USN.
         NSString *theUSSNKey = theHeaderDictionary[@"USN"];
-        
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The header is fine. Some important data:\nTheRequest method: %@\nStatus code: %d\nThe Header Dictionary: %@\nIs Notify: %d\nThe Type: %@\ntheUSSNKey: %@",theRequestMethod, theCode, theHeaderDictionary, isNotify, theType, theUSSNKey] filename:@"SSDP_debugging.txt"];
         BOOL first = (theCode == 200);
         if (first == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d", theCode]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the status is %d", theCode] filename:NULL];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The status code is not 200!"] filename:@"SSDP_debugging.txt"];
         }
         BOOL second = ![theRequestMethod isEqualToString:@"M-SEARCH"];
         if (second == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@", theRequestMethod]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, the request method is %@", theRequestMethod] filename:NULL];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The request method is M-SEARCH"] filename:@"SSDP_debugging.txt"];
         }
         BOOL third = [self isSearchingForFilter:theType];
         if (third == false) {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO. The type is %@", theType]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail, isSearchingForFilter return NO. The type is %@", theType] filename:NULL];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Is Searching failed!"] filename:@"SSDP_debugging.txt"];
         }
         BOOL fourth = (theUSSNKey.length > 0);
         
         if (first && second && third && fourth)
         {
             //Extract the UUID
-            NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"(?:uuid:).*(?:::)" options:0 error:nil];
+            NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"(?:uuid:).*(?::: )" options:0 error:nil];
             NSString *theUUID;
             NSTextCheckingResult *match = [reg firstMatchInString:theUSSNKey options:0 range:NSMakeRange(0, [theUSSNKey length])];
             
@@ -334,9 +346,9 @@ static double searchAttemptsBeforeKill = 6.0;
             range.location = range.location + 5;
             range.length = MIN(range.length - 7, (theUSSNKey.length -range.location));
             theUUID = [theUSSNKey substringWithRange:range];
-            
             if (theUUID && theUUID.length > 0)
             {
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have a valid UUID: %@", theUUID] filename:@"SSDP_debugging.txt"];
                 // If it is a NOTIFY - byebye message - try to find a device from a list and send him byebye
                 if ([theHeaderDictionary[@"NTS"] isEqualToString:@"ssdp:byebye"])
                 {
@@ -344,7 +356,7 @@ static double searchAttemptsBeforeKill = 6.0;
                         _deviceByeByeDates = [[NSMutableDictionary alloc] init];
                     }
                     [_deviceByeByeDates setObject:[NSDate date] forKey: theUUID];
-                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We receive ssdp:byebye for udid: %@", theUUID]];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We receive ssdp:byebye for udid: %@", theUUID] filename:NULL];
                     @synchronized (_foundServices)
                     {
                         ServiceDescription *theService = _foundServices[theUUID];
@@ -360,10 +372,10 @@ static double searchAttemptsBeforeKill = 6.0;
                     }
                 } else
                 {
-                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We receive location for udid: %@", theUUID]];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We receive location for udid: %@", theUUID] filename:NULL];
                     NSDate *byebyeDate = [_deviceByeByeDates objectForKey:theUUID];
                     if (byebyeDate != nil && fabs([byebyeDate timeIntervalSinceNow]) < 6) {
-                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We won't add new device, because of 6 sec rule!"]];
+                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We won't add new device, because of 6 sec rule!"] filename:NULL];
                         return;
                     }
                     NSString *location = [theHeaderDictionary objectForKey:@"Location"];
@@ -411,15 +423,18 @@ static double searchAttemptsBeforeKill = 6.0;
                 }
             }
             else {
-                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff"]];
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the UDID stuff"] filename:NULL];
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Fail on having a valid UUID. Exiting!"] filename:@"SSDP_debugging.txt"];
             }
         }
         else {
-            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if"]];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on the big if"] filename:NULL];
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The 4 if statement failed. Exiting!"] filename:@"SSDP_debugging.txt"];
         }
     }
     else {
-        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))"]];
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Went to else: Failed on  if (CFHTTPMessageIsHeaderComplete(theHTTPMessage))"] filename:NULL];
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The header is not complete. Exiting!"] filename:@"SSDP_debugging.txt"];
     }
     
     CFRelease(theHTTPMessage);
@@ -447,7 +462,7 @@ static double searchAttemptsBeforeKill = 6.0;
                 {
                     service.type = theType;
                     service.friendlyName = [device valueForKeyPath:@"friendlyName.text"];
-                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have new service and will call the delegate: %@", service.friendlyName]];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have new service and will call the delegate: %@", service.friendlyName] filename:NULL];
                     service.modelName = [[device objectForKey:@"modelName"] objectForKey:@"text"];
                     service.modelNumber = [[device objectForKey:@"modelNumber"] objectForKey:@"text"];
                     service.modelDescription = [[device objectForKey:@"modelDescription"] objectForKey:@"text"];
@@ -497,10 +512,11 @@ static double searchAttemptsBeforeKill = 6.0;
 - (BOOL) isSearchingForFilter:(NSString *)filter
 {
     __block BOOL containsFilter = NO;
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"These are the service filters: %@", _serviceFilters]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Is Searching for Filter method: Filter = %@", filter] filename:@"SSDP_debugging.txt"];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"These are the service filters: %@", _serviceFilters] filename:NULL];
     [_serviceFilters enumerateObjectsUsingBlock:^(NSDictionary *serviceFilter, NSUInteger idx, BOOL *stop) {
         NSString *ssdpFilter = [[serviceFilter objectForKey:@"ssdp" ] objectForKey:@"filter"];
-        
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will try and match filter: %@ for ssdpFilter: %@", filter, ssdpFilter] filename:@"SSDP_debugging.txt"];
         if ([ssdpFilter isEqualToString:filter])
         {
             containsFilter = YES;
@@ -549,9 +565,9 @@ static double searchAttemptsBeforeKill = 6.0;
 /// may be the root device or any of the subdevices. If no device matches,
 /// returns @c nil.
 - (NSDictionary *)device:(NSDictionary *)device containingRequiredServices:(NSArray *)requiredServices {
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]: We will start filtering devices!"]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]: We will start filtering devices!"] filename:NULL];
     NSArray *discoveredServices = [self discoveredServicesInDevice:device];
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]\nDevice: %@\nRequiredServices: %@\nDiscoveredServices: %@",device, requiredServices, discoveredServices]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]\nDevice: %@\nRequiredServices: %@\nDiscoveredServices: %@",device, requiredServices, discoveredServices] filename:NULL];
     const BOOL deviceHasAllRequiredServices = [self allRequiredServices:requiredServices areInDiscoveredServices:discoveredServices];
     
     if (deviceHasAllRequiredServices) {
@@ -572,7 +588,7 @@ static double searchAttemptsBeforeKill = 6.0;
             }
         }
     }
-    [SSDPDiscoveryProvider logToFile:@"[Filtering]: We filtered the device !!!!!"];
+    [SSDPDiscoveryProvider logToFile:@"[Filtering]: We filtered the device !!!!!" filename:NULL];
     return nil;
 }
 

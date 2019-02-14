@@ -319,13 +319,13 @@ static const NSInteger kValueNotFound = -1;
     [request setHTTPBody:xmlData];
     
     DLog(@"[OUT] : %@ \n %@", [request allHTTPHeaderFields], xml);
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[OUT] : %@ \n %@", [request allHTTPHeaderFields], xml]];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[OUT] : %@ \n %@", [request allHTTPHeaderFields], xml] filename:NULL];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
          NSError *xmlError;
          NSDictionary *dataXML = [CTXMLReader dictionaryForXMLData:data error:&xmlError];
-         [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[IN] : %@ \n %@", [((NSHTTPURLResponse *)response) allHeaderFields], dataXML]];
+         [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[IN] : %@ \n %@", [((NSHTTPURLResponse *)response) allHeaderFields], dataXML] filename:NULL];
          DLog(@"[IN] : %@ \n %@", [((NSHTTPURLResponse *)response) allHeaderFields], dataXML);
          
          if (connectionError)

@@ -24,7 +24,7 @@
 #import "DiscoveryProvider.h"
 
 #import "ConnectSDKDefaultPlatforms.h"
-
+#import "SSDPDiscoveryProvider.h"
 #import "DLNAService.h"
 #import "NetcastTVService.h"
 
@@ -142,7 +142,7 @@
 - (void) registerDefaultServices
 {
     NSDictionary *defaultPlatforms = kConnectSDKDefaultPlatforms;
-    
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Discovery Manager]: We have default platforms: %@", defaultPlatforms] filename:@"SSDP_debugging.txt"];
     [defaultPlatforms enumerateKeysAndObjectsUsingBlock:^(NSString *platformClassName, NSString *discoveryProviderClassName, BOOL *stop) {
         Class platformClass = NSClassFromString(platformClassName);
         Class discoveryProviderClass = NSClassFromString(discoveryProviderClassName);
@@ -452,6 +452,7 @@
 
 - (void) startDiscovery
 {
+    [SSDPDiscoveryProvider logToFile:@"[Discovery Manager]: Start Discovery Called" filename:@"SSDP_debugging.txt"];
     if (_searching)
         return;
     
