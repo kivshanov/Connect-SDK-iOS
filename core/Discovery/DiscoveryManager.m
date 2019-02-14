@@ -519,6 +519,7 @@
 {
     DLog(@"%@ (%@)", description.friendlyName, description.serviceId);
     
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Discoverying didFind Service with name %@ and serviceID %@", description.friendlyName, description.serviceId] filename:@"SSDP_debugging.txt"];
     BOOL deviceIsNew = [_allDevices objectForKey:description.address] == nil;
     ConnectableDevice *device;
     

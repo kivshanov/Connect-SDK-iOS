@@ -352,6 +352,7 @@ static double searchAttemptsBeforeKill = 6.0;
                 // If it is a NOTIFY - byebye message - try to find a device from a list and send him byebye
                 if ([theHeaderDictionary[@"NTS"] isEqualToString:@"ssdp:byebye"])
                 {
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The socket message is byebye!"] filename:@"SSDP_debugging.txt"];
                     if (_deviceByeByeDates == nil) {
                         _deviceByeByeDates = [[NSMutableDictionary alloc] init];
                     }
@@ -376,12 +377,15 @@ static double searchAttemptsBeforeKill = 6.0;
                     NSDate *byebyeDate = [_deviceByeByeDates objectForKey:theUUID];
                     if (byebyeDate != nil && fabs([byebyeDate timeIntervalSinceNow]) < 6) {
                         [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We won't add new device, because of 6 sec rule!"] filename:NULL];
+                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We won't add new device, because of 6 sec rule! Exiting!"] filename:@"SSDP_debugging.txt"];
                         return;
                     }
                     NSString *location = [theHeaderDictionary objectForKey:@"Location"];
                     
                     if (location && location.length > 0)
                     {
+                        
+                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have a valid location URL: %@", location] filename:@"SSDP_debugging.txt"];
                         // Advertising or search-respond
                         // Try to figure out if the device has been dicovered yet
                         ServiceDescription *foundService;
@@ -419,6 +423,12 @@ static double searchAttemptsBeforeKill = 6.0;
                             
                             [self getLocationData:location forKey:theUUID andType:theType];
                         }
+                        else {
+                            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The device is not new! Exiting!"] filename:@"SSDP_debugging.txt"];
+                        }
+                    }
+                    else {
+                        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The Location is empty. Exiting!"] filename:@"SSDP_debugging.txt"];
                     }
                 }
             }
@@ -442,6 +452,7 @@ static double searchAttemptsBeforeKill = 6.0;
 
 - (void) getLocationData:(NSString*)url forKey:(NSString*)UUID andType:(NSString *)theType
 {
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will send request to url: %2 and UUID %@ for type: %@", url,UUID, theType] filename:@"SSDP_debugging.txt"];
     NSURL *req = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:req];
     [NSURLConnection sendAsynchronousRequest:request queue:_locationLoadQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -450,6 +461,8 @@ static double searchAttemptsBeforeKill = 6.0;
         
         if (!xmlError)
         {
+            
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The big response from the Location url is:\n%@", xml] filename:@"SSDP_debugging.txt"];
             NSDictionary *device = [self device:[xml valueForKeyPath:@"root.device"]
                    containingServicesWithFilter:theType];
             
@@ -471,12 +484,22 @@ static double searchAttemptsBeforeKill = 6.0;
                     service.serviceList = [self serviceListForDevice:device];
                     service.commandURL = response.URL;
                     service.locationResponseHeaders = [((NSHTTPURLResponse *)response) allHeaderFields];
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We get a good device with name: %@ and type: %@", service.friendlyName, service.type] filename:@"SSDP_debugging.txt"];
                     
                     @synchronized(_foundServices) { [_foundServices setObject:service forKey:UUID]; }
                     
                     [self notifyDelegateOfNewService:service];
                 }
+                else {
+                    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We get no service in the XML handling. Exiting!"] filename:@"SSDP_debugging.txt"];
+                }
             }
+            else {
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We get no device from the XML. Exiting !"] filename:@"SSDP_debugging.txt"];
+            }
+        }
+        else {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We had XML error %@. Exiting!", xmlError] filename:@"SSDP_debugging.txt"];
         }
         
         @synchronized(_helloDevices) { [_helloDevices removeObjectForKey:UUID]; }
@@ -487,6 +510,7 @@ static double searchAttemptsBeforeKill = 6.0;
 {
     NSArray *serviceIds = [self serviceIdsForFilter:service.type];
     
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will start notifying. We have service IDs", serviceIds] filename:@"SSDP_debugging.txt"];
     [serviceIds enumerateObjectsUsingBlock:^(NSString *serviceId, NSUInteger idx, BOOL *stop) {
         ServiceDescription *newService = [service copy];
         newService.serviceId = serviceId;
@@ -568,6 +592,8 @@ static double searchAttemptsBeforeKill = 6.0;
     [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]: We will start filtering devices!"] filename:NULL];
     NSArray *discoveredServices = [self discoveredServicesInDevice:device];
     [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Filtering]\nDevice: %@\nRequiredServices: %@\nDiscoveredServices: %@",device, requiredServices, discoveredServices] filename:NULL];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The device services are: %@", discoveredServices] filename:@"SSDP_debugging.txt"];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"The required services are: %@", requiredServices] filename:@"SSDP_debugging.txt"];
     const BOOL deviceHasAllRequiredServices = [self allRequiredServices:requiredServices areInDiscoveredServices:discoveredServices];
     
     if (deviceHasAllRequiredServices) {
@@ -577,6 +603,7 @@ static double searchAttemptsBeforeKill = 6.0;
     // try to iterate through all the child devices
     NSArray *subDevices = [device valueForKeyPath:@"deviceList.device"];
     if (subDevices) {
+        [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have subdevices. Lets try with them.", subDevices] filename:@"SSDP_debugging.txt"];
         if (![subDevices isKindOfClass:[NSArray class]]) {
             subDevices = [NSArray arrayWithObject:subDevices];
         }
@@ -589,6 +616,7 @@ static double searchAttemptsBeforeKill = 6.0;
         }
     }
     [SSDPDiscoveryProvider logToFile:@"[Filtering]: We filtered the device !!!!!" filename:NULL];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We fitlered the device!"] filename:@"SSDP_debugging.txt"];
     return nil;
 }
 
