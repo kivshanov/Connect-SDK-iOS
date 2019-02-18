@@ -23,6 +23,7 @@
 #define kConnectSDKDefaultPlatforms (@{ \
     @"AirPlayService"     : @"ZeroConfDiscoveryProvider", \
     @"DLNAService"        : @"SSDPDiscoveryProvider", \
+    @"RokuService"        : @"SSDPDiscoveryProvider", \
 })
 
 #endif
