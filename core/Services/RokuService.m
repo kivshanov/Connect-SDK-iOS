@@ -660,7 +660,21 @@ static NSMutableArray *registeredApps = nil;
 
 - (void)stopWithSuccess:(SuccessBlock)success failure:(FailureBlock)failure
 {
-    [self sendNotSupportedFailure:failure];
+    NSString *commandPath = [NSString pathWithComponents:@[
+                                                           self.serviceDescription.commandURL.absoluteString,
+                                                           @"input?a=sto"
+                                                           ]];
+    
+    NSURL *targetURL = [NSURL URLWithString:commandPath];
+    
+    ServiceCommand *command = [ServiceCommand commandWithDelegate:self.serviceCommandDelegate target:targetURL payload:nil];
+    command.HTTPMethod = @"POST";
+    command.callbackComplete = ^(id responseObject)
+    {
+        success(responseObject);
+    };
+    command.callbackError = failure;
+    [command send];
 }
 
 - (void)rewindWithSuccess:(SuccessBlock)success failure:(FailureBlock)failure
