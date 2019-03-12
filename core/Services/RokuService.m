@@ -662,7 +662,8 @@ static NSMutableArray *registeredApps = nil;
 {
     NSString *commandPath = [NSString pathWithComponents:@[
                                                            self.serviceDescription.commandURL.absoluteString,
-                                                           @"input?a=sto"
+                                                           @"keypress",
+                                                           @"back",
                                                            ]];
     
     NSURL *targetURL = [NSURL URLWithString:commandPath];
