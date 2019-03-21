@@ -22,17 +22,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0D952F0E2243B63000FB265F /* CastService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F052243B63000FB265F /* CastService.m */; };
-		0D952F0F2243B63000FB265F /* CastService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F062243B63000FB265F /* CastService.h */; };
-		0D952F102243B63000FB265F /* CastWebAppSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F072243B63000FB265F /* CastWebAppSession.m */; };
-		0D952F112243B63000FB265F /* CastDiscoveryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F082243B63000FB265F /* CastDiscoveryProvider.m */; };
-		0D952F122243B63000FB265F /* CastService_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F092243B63000FB265F /* CastService_Private.h */; };
-		0D952F132243B63000FB265F /* CastServiceChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F0A2243B63000FB265F /* CastServiceChannel.h */; };
-		0D952F142243B63000FB265F /* CastServiceChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F0B2243B63000FB265F /* CastServiceChannel.m */; };
-		0D952F152243B63000FB265F /* CastWebAppSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F0C2243B63000FB265F /* CastWebAppSession.h */; };
-		0D952F162243B63000FB265F /* CastDiscoveryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F0D2243B63000FB265F /* CastDiscoveryProvider.h */; };
-		0DB564082243B98F000CFA90 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB564072243B98F000CFA90 /* GoogleCast.framework */; };
-		0DB564092243BB59000CFA90 /* GoogleCast.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0DB564072243B98F000CFA90 /* GoogleCast.framework */; };
 		0F446CC21A6D8353000BB1C0 /* PlayListControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F446CC11A6D8353000BB1C0 /* PlayListControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F446CC91A6D924D000BB1C0 /* MediaLaunchObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F446CC71A6D924D000BB1C0 /* MediaLaunchObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F446CCA1A6D924D000BB1C0 /* MediaLaunchObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F446CC81A6D924D000BB1C0 /* MediaLaunchObject.m */; };
@@ -252,105 +241,39 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				0DB564092243BB59000CFA90 /* GoogleCast.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0D952F052243B63000FB265F /* CastService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastService.m; path = google/CastService.m; sourceTree = "<group>"; };
-		0D952F062243B63000FB265F /* CastService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastService.h; path = google/CastService.h; sourceTree = "<group>"; };
-		0D952F072243B63000FB265F /* CastWebAppSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastWebAppSession.m; path = google/CastWebAppSession.m; sourceTree = "<group>"; };
-		0D952F082243B63000FB265F /* CastDiscoveryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastDiscoveryProvider.m; path = google/CastDiscoveryProvider.m; sourceTree = "<group>"; };
-		0D952F092243B63000FB265F /* CastService_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastService_Private.h; path = google/CastService_Private.h; sourceTree = "<group>"; };
-		0D952F0A2243B63000FB265F /* CastServiceChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastServiceChannel.h; path = google/CastServiceChannel.h; sourceTree = "<group>"; };
-		0D952F0B2243B63000FB265F /* CastServiceChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastServiceChannel.m; path = google/CastServiceChannel.m; sourceTree = "<group>"; };
-		0D952F0C2243B63000FB265F /* CastWebAppSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastWebAppSession.h; path = google/CastWebAppSession.h; sourceTree = "<group>"; };
-		0D952F0D2243B63000FB265F /* CastDiscoveryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastDiscoveryProvider.h; path = google/CastDiscoveryProvider.h; sourceTree = "<group>"; };
-		0DB564072243B98F000CFA90 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleCast.framework; sourceTree = "<group>"; };
 		0F446CC11A6D8353000BB1C0 /* PlayListControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListControl.h; sourceTree = "<group>"; };
 		0F446CC71A6D924D000BB1C0 /* MediaLaunchObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaLaunchObject.h; sourceTree = "<group>"; };
 		0F446CC81A6D924D000BB1C0 /* MediaLaunchObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaLaunchObject.m; sourceTree = "<group>"; };
-		440A031C1A854EDE0007E3D3 /* WebOSTVServiceSocketClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebOSTVServiceSocketClientTests.m; sourceTree = "<group>"; };
 		440A031E1A85536A0007E3D3 /* WebOSTVServiceSocketClient_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebOSTVServiceSocketClient_Private.h; sourceTree = "<group>"; };
-		44166C531B4203880052F9EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441C9ED31B3DBCB200F912D5 /* SubscriptionDeduplicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionDeduplicator.h; sourceTree = "<group>"; };
 		441C9ED41B3DBCB200F912D5 /* SubscriptionDeduplicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionDeduplicator.m; sourceTree = "<group>"; };
-		441C9EFE1B3DD8C500F912D5 /* SubscriptionDeduplicatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionDeduplicatorTests.m; sourceTree = "<group>"; };
-		441FE0ED1B1528D0006C47CE /* EXPMatchers+matchRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+matchRegex.h"; sourceTree = "<group>"; };
-		441FE0EE1B1528D0006C47CE /* EXPMatchers+matchRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+matchRegex.m"; sourceTree = "<group>"; };
 		44291C481A6705E400280E5C /* DLNAHTTPServer_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLNAHTTPServer_Private.h; sourceTree = "<group>"; };
-		44291C511A68B4C000280E5C /* SSDPDiscoveryProvider_FilteringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDPDiscoveryProvider_FilteringTests.m; sourceTree = "<group>"; };
 		442B9A431A153F240053AE51 /* SSDPDiscoveryProvider_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDPDiscoveryProvider_Private.h; sourceTree = "<group>"; };
 		443063BF1A4210F0007779DA /* AirPlayServiceHTTPKeepAlive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPlayServiceHTTPKeepAlive.h; sourceTree = "<group>"; };
 		443063C01A4210F0007779DA /* AirPlayServiceHTTPKeepAlive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPlayServiceHTTPKeepAlive.m; sourceTree = "<group>"; };
-		44316F251AF3F17A000FE655 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
-		44316F271AF3F17A000FE655 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OHHTTPStubs.framework; sourceTree = "<group>"; };
-		4433F3DE1A421750008D9A04 /* AirPlayServiceHTTPKeepAliveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPlayServiceHTTPKeepAliveTests.m; sourceTree = "<group>"; };
-		44758BBA1AE6C06200EC43A6 /* AirPlayServiceHTTPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPlayServiceHTTPTests.m; sourceTree = "<group>"; };
 		44758BBC1AE6C6E300EC43A6 /* AirPlayServiceHTTP_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPlayServiceHTTP_Private.h; sourceTree = "<group>"; };
-		44758BC91AE7070500EC43A6 /* airplay_playbackinfo_ff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airplay_playbackinfo_ff.json; sourceTree = "<group>"; };
-		44758BCA1AE7070500EC43A6 /* airplay_playbackinfo_finished.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airplay_playbackinfo_finished.json; sourceTree = "<group>"; };
-		44758BCB1AE7070500EC43A6 /* airplay_playbackinfo_paused.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airplay_playbackinfo_paused.json; sourceTree = "<group>"; };
-		44758BCC1AE7070500EC43A6 /* airplay_playbackinfo_playing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airplay_playbackinfo_playing.json; sourceTree = "<group>"; };
-		44758BCD1AE7070600EC43A6 /* airplay_playbackinfo_rewind.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airplay_playbackinfo_rewind.json; sourceTree = "<group>"; };
-		44789D841B585525001D5098 /* RokuServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RokuServiceTests.m; sourceTree = "<group>"; };
 		44789D861B5858D2001D5098 /* RokuService_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RokuService_Private.h; sourceTree = "<group>"; };
-		447F63431B14FDC600699843 /* DLNAServiceAcceptanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNAServiceAcceptanceTests.m; sourceTree = "<group>"; };
-		447F63451B15000800699843 /* ConnectSDKIntegrationTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConnectSDKIntegrationTests-Prefix.pch"; sourceTree = "<group>"; };
 		447F93B91B714E8B005703EA /* WebOSTVService_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebOSTVService_Private.h; sourceTree = "<group>"; };
-		4480857E1A12A7BE00E13938 /* ConnectSDKDefaultPlatformsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectSDKDefaultPlatformsTests.m; sourceTree = "<group>"; };
-		448414F71AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMStubRecorder+XCTestExpectation.h"; sourceTree = "<group>"; };
-		448414F81AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMStubRecorder+XCTestExpectation.m"; sourceTree = "<group>"; };
-		448B28691B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMArg+ArgumentCaptor.h"; sourceTree = "<group>"; };
-		448B286A1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMArg+ArgumentCaptor.m"; sourceTree = "<group>"; };
-		448F36C41A1BD64200536649 /* ZeroConfDiscoveryProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZeroConfDiscoveryProviderTests.m; sourceTree = "<group>"; };
 		448F36C61A1C16FE00536649 /* ZeroConfDiscoveryProvider_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZeroConfDiscoveryProvider_Private.h; sourceTree = "<group>"; };
 		4494262F1AF82F49006BAFF2 /* BlockRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockRunner.h; sourceTree = "<group>"; };
-		449426321AF82F8E006BAFF2 /* BlockRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockRunnerTests.m; sourceTree = "<group>"; };
-		449426341AF83055006BAFF2 /* SynchronousBlockRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronousBlockRunnerTests.m; sourceTree = "<group>"; };
 		449426361AF830A1006BAFF2 /* SynchronousBlockRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronousBlockRunner.h; sourceTree = "<group>"; };
 		449426371AF830A1006BAFF2 /* SynchronousBlockRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronousBlockRunner.m; sourceTree = "<group>"; };
-		4494263A1AF8353A006BAFF2 /* DispatchQueueBlockRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueBlockRunnerTests.m; sourceTree = "<group>"; };
 		4494263C1AF83588006BAFF2 /* DispatchQueueBlockRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueBlockRunner.h; sourceTree = "<group>"; };
 		4494263D1AF83588006BAFF2 /* DispatchQueueBlockRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueBlockRunner.m; sourceTree = "<group>"; };
 		4498D98A1A659F43008C0B72 /* NSDictionary+KeyPredicateSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KeyPredicateSearch.h"; sourceTree = "<group>"; };
 		4498D98B1A659F43008C0B72 /* NSDictionary+KeyPredicateSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KeyPredicateSearch.m"; sourceTree = "<group>"; };
-		4498D98F1A65A1D7008C0B72 /* NSDictionary+KeyPredicateSearchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KeyPredicateSearchTests.m"; sourceTree = "<group>"; };
-		4498D9911A65B69F008C0B72 /* DLNAServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNAServiceTests.m; sourceTree = "<group>"; };
-		4498D9931A65CC12008C0B72 /* getpositioninfo_response_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = getpositioninfo_response_xbox.xml; sourceTree = "<group>"; };
-		4498D9951A65ED16008C0B72 /* getpositioninfo_response_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = getpositioninfo_response_sonos.xml; sourceTree = "<group>"; };
 		4498D9971A65F8AB008C0B72 /* DLNAService_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLNAService_Private.h; sourceTree = "<group>"; };
-		4498D9981A660147008C0B72 /* gettransportinfo_response_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gettransportinfo_response_xbox.xml; sourceTree = "<group>"; };
-		4498D99A1A6601A7008C0B72 /* gettransportinfo_response_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gettransportinfo_response_sonos.xml; sourceTree = "<group>"; };
-		4498D99C1A66082B008C0B72 /* getvolume_response_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = getvolume_response_xbox.xml; sourceTree = "<group>"; };
-		4498D99E1A660835008C0B72 /* getvolume_response_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = getvolume_response_sonos.xml; sourceTree = "<group>"; };
-		4498D9A01A660E82008C0B72 /* getmute_response_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = getmute_response_sonos.xml; sourceTree = "<group>"; };
-		4498D9A21A660EAE008C0B72 /* getmute_response_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = getmute_response_xbox.xml; sourceTree = "<group>"; };
-		4498D9A41A66148F008C0B72 /* upnperror_response_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = upnperror_response_xbox.xml; sourceTree = "<group>"; };
-		4498D9A61A661500008C0B72 /* upnperror_response_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = upnperror_response_sonos.xml; sourceTree = "<group>"; };
-		4498D9A81A66F027008C0B72 /* DLNAHTTPServerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNAHTTPServerTests.m; sourceTree = "<group>"; };
-		449A37051B0FDC1C00E47DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		449A37101B0FE03400E47DAC /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Expecta.framework; sourceTree = "<group>"; };
-		449A37111B0FE03400E47DAC /* Specta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Specta.framework; sourceTree = "<group>"; };
-		449CC26A1AF9458E0064F2F7 /* ServiceDescriptionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDescriptionTests.m; sourceTree = "<group>"; };
-		44A08FF91B698E170077E87D /* WebAppSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAppSessionTests.m; sourceTree = "<group>"; };
-		44A08FFB1B698FCB0077E87D /* AirPlayServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPlayServiceTests.m; sourceTree = "<group>"; };
 		44A08FFD1B6991CC0077E87D /* AirPlayService_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPlayService_Private.h; sourceTree = "<group>"; };
 		44A090011B6BDDBC0077E87D /* NSObject+FeatureNotSupported_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FeatureNotSupported_Private.h"; sourceTree = "<group>"; };
 		44A090021B6BDDBC0077E87D /* NSObject+FeatureNotSupported_Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FeatureNotSupported_Private.m"; sourceTree = "<group>"; };
-		44A090051B6C07370077E87D /* XCTestCase+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+Common.h"; sourceTree = "<group>"; };
-		44A090061B6C07370077E87D /* XCTestCase+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+Common.m"; sourceTree = "<group>"; };
-		44A0E1A51B3B2F5C00ADF95F /* WebOSWebAppSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebOSWebAppSessionTests.m; sourceTree = "<group>"; };
 		44A5518B1AC1D924001AF783 /* NetcastTVService_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetcastTVService_Private.h; sourceTree = "<group>"; };
-		44A5518E1AC1DF4C001AF783 /* NetcastTVServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetcastTVServiceTests.m; sourceTree = "<group>"; };
-		44A551981AC338E0001AF783 /* WebOSTVServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebOSTVServiceTests.m; sourceTree = "<group>"; };
 		44A5519D1AC36672001AF783 /* CommonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
-		44B11F501B16827C00F0156C /* OCMStubRecorder+SpectaAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMStubRecorder+SpectaAsync.h"; sourceTree = "<group>"; };
-		44B11F511B16827C00F0156C /* OCMStubRecorder+SpectaAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMStubRecorder+SpectaAsync.m"; sourceTree = "<group>"; };
-		44B43AF01B5DA99F004083E5 /* MediaInfoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaInfoTests.m; sourceTree = "<group>"; };
-		44B43AFB1B6157F6004083E5 /* NSMutableDictionary+NilSafeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+NilSafeTests.m"; sourceTree = "<group>"; };
 		44BCC3F41AB77F7D001BCDAA /* XMLWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLWriter.h; sourceTree = "<group>"; };
 		44BCC3F51AB77F7D001BCDAA /* XMLWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLWriter.m; sourceTree = "<group>"; };
 		44C2CC921AB7948300B20E46 /* XMLWriter+ConvenienceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMLWriter+ConvenienceMethods.h"; sourceTree = "<group>"; };
@@ -358,42 +281,16 @@
 		44C2CC9F1AB7A33500B20E46 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		44C2CCA01AB7A33500B20E46 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		44C3900E1B34A7B500723388 /* WebOSWebAppSession_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebOSWebAppSession_Private.h; sourceTree = "<group>"; };
-		44C390111B34DCAE00723388 /* DiscoveryManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryManagerTests.m; sourceTree = "<group>"; };
-		44D0ECEB1B55D8FC00E02A8B /* SubtitleInfoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleInfoTests.m; sourceTree = "<group>"; };
 		44D0ECED1B55DA9000E02A8B /* SubtitleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleInfo.h; sourceTree = "<group>"; };
 		44D0ECEE1B55DA9000E02A8B /* SubtitleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleInfo.m; sourceTree = "<group>"; };
 		44D2ACD21B30B07700CE4A3A /* DiscoveryManager_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryManager_Private.h; sourceTree = "<group>"; };
-		44D88F7A1A71C4A8009D9608 /* ssdp_device_description_chromecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_chromecast.xml; sourceTree = "<group>"; };
-		44D88F7B1A71C4A8009D9608 /* ssdp_device_description_firetv.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_firetv.xml; sourceTree = "<group>"; };
-		44D88F7C1A71C4A8009D9608 /* ssdp_device_description_roku2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_roku2.xml; sourceTree = "<group>"; };
-		44D88F7D1A71C4A8009D9608 /* ssdp_device_description_samsung_tv.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_samsung_tv.xml; sourceTree = "<group>"; };
-		44D88F7E1A71C4A8009D9608 /* ssdp_device_description_webos_minor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_webos_minor.xml; sourceTree = "<group>"; };
-		44D88F7F1A71C4A8009D9608 /* ssdp_device_description_xbox_dial.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_xbox_dial.xml; sourceTree = "<group>"; };
-		44D88F811A71C4A8009D9608 /* ssdp_device_description_samsung_tv_dlna.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_samsung_tv_dlna.xml; sourceTree = "<group>"; };
-		44D88F821A71C4A8009D9608 /* ssdp_device_description_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_sonos.xml; sourceTree = "<group>"; };
-		44D88F831A71C4A8009D9608 /* ssdp_device_description_sonos_no_root_services.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_sonos_no_root_services.xml; sourceTree = "<group>"; };
-		44D88F841A71C4A8009D9608 /* ssdp_device_description_webos_minor_dlna.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_webos_minor_dlna.xml; sourceTree = "<group>"; };
-		44D88F851A71C4A8009D9608 /* ssdp_device_description_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_xbox.xml; sourceTree = "<group>"; };
-		44D88F861A71C4A8009D9608 /* ssdp_device_description.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description.xml; sourceTree = "<group>"; };
-		44D88F881A71C4A8009D9608 /* ssdp_device_description_webos_minor_webos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_webos_minor_webos.xml; sourceTree = "<group>"; };
-		44D88F961A71D6AF009D9608 /* ssdp_device_description_dlna_no_required_services.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_dlna_no_required_services.xml; sourceTree = "<group>"; };
-		44D88F981A71DB15009D9608 /* ssdp_device_description_dlna_root_no_required_services.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_dlna_root_no_required_services.xml; sourceTree = "<group>"; };
-		44D8F7D11AB223BF00559FE3 /* ssdp_device_description_lg_speaker.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ssdp_device_description_lg_speaker.xml; sourceTree = "<group>"; };
-		44D8F7D81AB27B4800559FE3 /* NSInvocation+ObjectGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+ObjectGetter.h"; sourceTree = "<group>"; };
-		44D8F7D91AB27B4800559FE3 /* NSInvocation+ObjectGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+ObjectGetter.m"; sourceTree = "<group>"; };
-		44D90AA81B06AA9E00A5CF2A /* AppStateChangeNotifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStateChangeNotifierTests.m; sourceTree = "<group>"; };
 		44D90AAA1B06B26C00A5CF2A /* AppStateChangeNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStateChangeNotifier.h; sourceTree = "<group>"; };
 		44D90AAB1B06B26C00A5CF2A /* AppStateChangeNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStateChangeNotifier.m; sourceTree = "<group>"; };
 		44E98F5D1B1E63570043BC70 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
 		44E98F5E1B1E63570043BC70 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OHHTTPStubs.framework; sourceTree = "<group>"; };
-		44E98F951B1E72D80043BC70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44E98F961B1E72D80043BC70 /* the-san-francisco-peaks-of-flagstaff-718x544.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "the-san-francisco-peaks-of-flagstaff-718x544.jpg"; sourceTree = "<group>"; };
-		44E98F991B1E733D0043BC70 /* AirPlayServiceAcceptanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPlayServiceAcceptanceTests.m; sourceTree = "<group>"; };
-		44EF618C1A12DF2D00CF344C /* ConnectSDKTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConnectSDKTests-Prefix.pch"; sourceTree = "<group>"; };
 		44EF618E1A12E0A400CF344C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		44EF61971A12E1C800CF344C /* MediaAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaAccessibility.framework; path = System/Library/Frameworks/MediaAccessibility.framework; sourceTree = SDKROOT; };
 		44EF619A1A12E23200CF344C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		44EF61A31A12FC8800CF344C /* SSDPDiscoveryProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDPDiscoveryProviderTests.m; sourceTree = "<group>"; };
 		B2FA850A1C2BA371738A19B6 /* NSMutableDictionary+NilSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+NilSafe.m"; sourceTree = "<group>"; };
 		B2FA8C3DF809E5088781B765 /* CapabilityConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapabilityConstants.m; sourceTree = "<group>"; };
 		B2FA8E8AF8F4302A1B5541EA /* NSMutableDictionary+NilSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+NilSafe.h"; sourceTree = "<group>"; };
@@ -578,7 +475,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DB564082243B98F000CFA90 /* GoogleCast.framework in Frameworks */,
 				EAD7F8601906E99C00B33AAB /* UIKit.framework in Frameworks */,
 				EAD7F85E1906E98200B33AAB /* AVFoundation.framework in Frameworks */,
 				EA61EBF218FE48EF00D75696 /* MobileCoreServices.framework in Frameworks */,
@@ -599,104 +495,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		44166C511B4203880052F9EC /* ConnectSDKAcceptanceTests */ = {
-			isa = PBXGroup;
-			children = (
-				44E98F991B1E733D0043BC70 /* AirPlayServiceAcceptanceTests.m */,
-				447F63431B14FDC600699843 /* DLNAServiceAcceptanceTests.m */,
-				44166C521B4203880052F9EC /* Supporting Files */,
-			);
-			path = ConnectSDKAcceptanceTests;
-			sourceTree = "<group>";
-		};
-		44166C521B4203880052F9EC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				44166C531B4203880052F9EC /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		44316F231AF3F17A000FE655 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				44316F251AF3F17A000FE655 /* OCMock.framework */,
-				44316F271AF3F17A000FE655 /* OHHTTPStubs.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		4433F3DC1A421733008D9A04 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				449CC2691AF945800064F2F7 /* Config */,
-				4433F3DD1A421733008D9A04 /* Helpers */,
-				44A0E1A41B3B2F5C00ADF95F /* Sessions */,
-				44A08FFB1B698FCB0077E87D /* AirPlayServiceTests.m */,
-				4498D9911A65B69F008C0B72 /* DLNAServiceTests.m */,
-				44A5518E1AC1DF4C001AF783 /* NetcastTVServiceTests.m */,
-				44789D841B585525001D5098 /* RokuServiceTests.m */,
-				44A551981AC338E0001AF783 /* WebOSTVServiceTests.m */,
-				4498D9A61A661500008C0B72 /* upnperror_response_sonos.xml */,
-				4498D9A41A66148F008C0B72 /* upnperror_response_xbox.xml */,
-				4498D9A21A660EAE008C0B72 /* getmute_response_xbox.xml */,
-				4498D9A01A660E82008C0B72 /* getmute_response_sonos.xml */,
-				4498D99E1A660835008C0B72 /* getvolume_response_sonos.xml */,
-				4498D99C1A66082B008C0B72 /* getvolume_response_xbox.xml */,
-				4498D99A1A6601A7008C0B72 /* gettransportinfo_response_sonos.xml */,
-				4498D9981A660147008C0B72 /* gettransportinfo_response_xbox.xml */,
-				4498D9931A65CC12008C0B72 /* getpositioninfo_response_xbox.xml */,
-				4498D9951A65ED16008C0B72 /* getpositioninfo_response_sonos.xml */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		4433F3DD1A421733008D9A04 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				44758BC01AE6DB7400EC43A6 /* sample_data */,
-				4433F3DE1A421750008D9A04 /* AirPlayServiceHTTPKeepAliveTests.m */,
-				44758BBA1AE6C06200EC43A6 /* AirPlayServiceHTTPTests.m */,
-				4498D9A81A66F027008C0B72 /* DLNAHTTPServerTests.m */,
-				440A031C1A854EDE0007E3D3 /* WebOSTVServiceSocketClientTests.m */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		44758BC01AE6DB7400EC43A6 /* sample_data */ = {
-			isa = PBXGroup;
-			children = (
-				44758BC91AE7070500EC43A6 /* airplay_playbackinfo_ff.json */,
-				44758BCA1AE7070500EC43A6 /* airplay_playbackinfo_finished.json */,
-				44758BCB1AE7070500EC43A6 /* airplay_playbackinfo_paused.json */,
-				44758BCC1AE7070500EC43A6 /* airplay_playbackinfo_playing.json */,
-				44758BCD1AE7070600EC43A6 /* airplay_playbackinfo_rewind.json */,
-			);
-			path = sample_data;
-			sourceTree = "<group>";
-		};
-		4480857B1A12A7BE00E13938 /* ConnectSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-				44316F231AF3F17A000FE655 /* Frameworks */,
-				448B28691B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.h */,
-				448B286A1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m */,
-				448414F71AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.h */,
-				448414F81AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.m */,
-				44D8F7D81AB27B4800559FE3 /* NSInvocation+ObjectGetter.h */,
-				44D8F7D91AB27B4800559FE3 /* NSInvocation+ObjectGetter.m */,
-				44A090051B6C07370077E87D /* XCTestCase+Common.h */,
-				44A090061B6C07370077E87D /* XCTestCase+Common.m */,
-				4480857E1A12A7BE00E13938 /* ConnectSDKDefaultPlatformsTests.m */,
-				44EF61A11A12FC5000CF344C /* Discovery */,
-				4498D98E1A65A1B7008C0B72 /* Helpers */,
-				4433F3DC1A421733008D9A04 /* Services */,
-				44EF618C1A12DF2D00CF344C /* ConnectSDKTests-Prefix.pch */,
-				44E98F941B1E72D80043BC70 /* SupportingFiles */,
-			);
-			path = ConnectSDKTests;
-			sourceTree = "<group>";
-		};
 		4494262E1AF82F28006BAFF2 /* BlockRunner */ = {
 			isa = PBXGroup;
 			children = (
@@ -709,78 +507,6 @@
 			path = BlockRunner;
 			sourceTree = "<group>";
 		};
-		449426311AF82F75006BAFF2 /* BlockRunner */ = {
-			isa = PBXGroup;
-			children = (
-				449426321AF82F8E006BAFF2 /* BlockRunnerTests.m */,
-				449426341AF83055006BAFF2 /* SynchronousBlockRunnerTests.m */,
-				4494263A1AF8353A006BAFF2 /* DispatchQueueBlockRunnerTests.m */,
-			);
-			path = BlockRunner;
-			sourceTree = "<group>";
-		};
-		4498D98E1A65A1B7008C0B72 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				449426311AF82F75006BAFF2 /* BlockRunner */,
-				44D90AA81B06AA9E00A5CF2A /* AppStateChangeNotifierTests.m */,
-				44B43AF01B5DA99F004083E5 /* MediaInfoTests.m */,
-				4498D98F1A65A1D7008C0B72 /* NSDictionary+KeyPredicateSearchTests.m */,
-				44B43AFB1B6157F6004083E5 /* NSMutableDictionary+NilSafeTests.m */,
-				441C9EFE1B3DD8C500F912D5 /* SubscriptionDeduplicatorTests.m */,
-				44D0ECEB1B55D8FC00E02A8B /* SubtitleInfoTests.m */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		449A37031B0FDC1C00E47DAC /* ConnectSDKIntegrationTests */ = {
-			isa = PBXGroup;
-			children = (
-				449A370F1B0FE03400E47DAC /* Frameworks */,
-				441FE0ED1B1528D0006C47CE /* EXPMatchers+matchRegex.h */,
-				441FE0EE1B1528D0006C47CE /* EXPMatchers+matchRegex.m */,
-				44B11F501B16827C00F0156C /* OCMStubRecorder+SpectaAsync.h */,
-				44B11F511B16827C00F0156C /* OCMStubRecorder+SpectaAsync.m */,
-				447F63451B15000800699843 /* ConnectSDKIntegrationTests-Prefix.pch */,
-				449A37041B0FDC1C00E47DAC /* Supporting Files */,
-			);
-			path = ConnectSDKIntegrationTests;
-			sourceTree = "<group>";
-		};
-		449A37041B0FDC1C00E47DAC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				449A37051B0FDC1C00E47DAC /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		449A370F1B0FE03400E47DAC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				449A37101B0FE03400E47DAC /* Expecta.framework */,
-				449A37111B0FE03400E47DAC /* Specta.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		449CC2691AF945800064F2F7 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				449CC26A1AF9458E0064F2F7 /* ServiceDescriptionTests.m */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
-		44A0E1A41B3B2F5C00ADF95F /* Sessions */ = {
-			isa = PBXGroup;
-			children = (
-				44A0E1A51B3B2F5C00ADF95F /* WebOSWebAppSessionTests.m */,
-				44A08FF91B698E170077E87D /* WebAppSessionTests.m */,
-			);
-			path = Sessions;
-			sourceTree = "<group>";
-		};
 		44BCC3F31AB77F7D001BCDAA /* xswi */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,82 +514,6 @@
 				44BCC3F51AB77F7D001BCDAA /* XMLWriter.m */,
 			);
 			path = xswi;
-			sourceTree = "<group>";
-		};
-		44D88F5A1A717771009D9608 /* sample_data */ = {
-			isa = PBXGroup;
-			children = (
-				44D88F791A71C4A8009D9608 /* dial */,
-				44D88F801A71C4A8009D9608 /* dlna */,
-				44D88F871A71C4A8009D9608 /* webos */,
-				44D88F861A71C4A8009D9608 /* ssdp_device_description.xml */,
-			);
-			path = sample_data;
-			sourceTree = "<group>";
-		};
-		44D88F791A71C4A8009D9608 /* dial */ = {
-			isa = PBXGroup;
-			children = (
-				44D88F7A1A71C4A8009D9608 /* ssdp_device_description_chromecast.xml */,
-				44D88F7B1A71C4A8009D9608 /* ssdp_device_description_firetv.xml */,
-				44D88F7C1A71C4A8009D9608 /* ssdp_device_description_roku2.xml */,
-				44D88F7D1A71C4A8009D9608 /* ssdp_device_description_samsung_tv.xml */,
-				44D88F7E1A71C4A8009D9608 /* ssdp_device_description_webos_minor.xml */,
-				44D88F7F1A71C4A8009D9608 /* ssdp_device_description_xbox_dial.xml */,
-			);
-			path = dial;
-			sourceTree = "<group>";
-		};
-		44D88F801A71C4A8009D9608 /* dlna */ = {
-			isa = PBXGroup;
-			children = (
-				44D88F961A71D6AF009D9608 /* ssdp_device_description_dlna_no_required_services.xml */,
-				44D88F981A71DB15009D9608 /* ssdp_device_description_dlna_root_no_required_services.xml */,
-				44D8F7D11AB223BF00559FE3 /* ssdp_device_description_lg_speaker.xml */,
-				44D88F811A71C4A8009D9608 /* ssdp_device_description_samsung_tv_dlna.xml */,
-				44D88F821A71C4A8009D9608 /* ssdp_device_description_sonos.xml */,
-				44D88F831A71C4A8009D9608 /* ssdp_device_description_sonos_no_root_services.xml */,
-				44D88F841A71C4A8009D9608 /* ssdp_device_description_webos_minor_dlna.xml */,
-				44D88F851A71C4A8009D9608 /* ssdp_device_description_xbox.xml */,
-			);
-			path = dlna;
-			sourceTree = "<group>";
-		};
-		44D88F871A71C4A8009D9608 /* webos */ = {
-			isa = PBXGroup;
-			children = (
-				44D88F881A71C4A8009D9608 /* ssdp_device_description_webos_minor_webos.xml */,
-			);
-			path = webos;
-			sourceTree = "<group>";
-		};
-		44E98F941B1E72D80043BC70 /* SupportingFiles */ = {
-			isa = PBXGroup;
-			children = (
-				44E98F951B1E72D80043BC70 /* Info.plist */,
-				44E98F961B1E72D80043BC70 /* the-san-francisco-peaks-of-flagstaff-718x544.jpg */,
-			);
-			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		44EF61A11A12FC5000CF344C /* Discovery */ = {
-			isa = PBXGroup;
-			children = (
-				44EF61A21A12FC5000CF344C /* Providers */,
-				44C390111B34DCAE00723388 /* DiscoveryManagerTests.m */,
-			);
-			path = Discovery;
-			sourceTree = "<group>";
-		};
-		44EF61A21A12FC5000CF344C /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				44D88F5A1A717771009D9608 /* sample_data */,
-				44EF61A31A12FC8800CF344C /* SSDPDiscoveryProviderTests.m */,
-				44291C511A68B4C000280E5C /* SSDPDiscoveryProvider_FilteringTests.m */,
-				448F36C41A1BD64200536649 /* ZeroConfDiscoveryProviderTests.m */,
-			);
-			path = Providers;
 			sourceTree = "<group>";
 		};
 		EA5FB799199AEC2E0057B4B4 /* Connect SDK */ = {
@@ -878,15 +528,6 @@
 		EA5FB79C199AEC550057B4B4 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				0D952F0D2243B63000FB265F /* CastDiscoveryProvider.h */,
-				0D952F082243B63000FB265F /* CastDiscoveryProvider.m */,
-				0D952F092243B63000FB265F /* CastService_Private.h */,
-				0D952F062243B63000FB265F /* CastService.h */,
-				0D952F052243B63000FB265F /* CastService.m */,
-				0D952F0A2243B63000FB265F /* CastServiceChannel.h */,
-				0D952F0B2243B63000FB265F /* CastServiceChannel.m */,
-				0D952F0C2243B63000FB265F /* CastWebAppSession.h */,
-				0D952F072243B63000FB265F /* CastWebAppSession.m */,
 				EA5F82F3199BDCD300B7302B /* ConnectSDK.h */,
 				EA5FB79E199AEC550057B4B4 /* ConnectSDK-Prefix.pch */,
 				EA5FB79F199AEC550057B4B4 /* Devices */,
@@ -895,9 +536,6 @@
 				EA5FB7B9199AEC550057B4B4 /* Frameworks */,
 				EA5FB802199AEC550057B4B4 /* Helpers */,
 				EA5FB816199AEC550057B4B4 /* Services */,
-				44166C511B4203880052F9EC /* ConnectSDKAcceptanceTests */,
-				449A37031B0FDC1C00E47DAC /* ConnectSDKIntegrationTests */,
-				4480857B1A12A7BE00E13938 /* ConnectSDKTests */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -1294,7 +932,6 @@
 		EA61EB1218FE485B00D75696 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0DB564072243B98F000CFA90 /* GoogleCast.framework */,
 				44EF619A1A12E23200CF344C /* libicucore.dylib */,
 				44EF61971A12E1C800CF344C /* MediaAccessibility.framework */,
 				44EF618E1A12E0A400CF344C /* libz.dylib */,
@@ -1332,9 +969,7 @@
 				EA5FB8DC199AEC560057B4B4 /* WebAppLauncher.h in Headers */,
 				EA5FB8BB199AEC560057B4B4 /* AppInfo.h in Headers */,
 				EA5FB8B1199AEC560057B4B4 /* GCDWebServerFileResponse.h in Headers */,
-				0D952F122243B63000FB265F /* CastService_Private.h in Headers */,
 				EA5FB896199AEC560057B4B4 /* CTASIProgressDelegate.h in Headers */,
-				0D952F162243B63000FB265F /* CastDiscoveryProvider.h in Headers */,
 				EA5FB88E199AEC560057B4B4 /* CTASIHTTPRequest.h in Headers */,
 				EA5FB8E6199AEC560057B4B4 /* ServiceConfig.h in Headers */,
 				44C2CCA11AB7A33500B20E46 /* NSString+Common.h in Headers */,
@@ -1349,7 +984,6 @@
 				44D90AAC1B06B26C00A5CF2A /* AppStateChangeNotifier.h in Headers */,
 				EA5FB8DD199AEC560057B4B4 /* ServiceAsyncCommand.h in Headers */,
 				0F446CC91A6D924D000BB1C0 /* MediaLaunchObject.h in Headers */,
-				0D952F152243B63000FB265F /* CastWebAppSession.h in Headers */,
 				EA5FB8CA199AEC560057B4B4 /* SSDPSocketListener.h in Headers */,
 				EA5FB8DF199AEC560057B4B4 /* ServiceCommand.h in Headers */,
 				EA5FB8E1199AEC560057B4B4 /* ServiceCommandDelegate.h in Headers */,
@@ -1372,7 +1006,6 @@
 				EA5FB8FA199AEC570057B4B4 /* WebOSTVServiceSocketClient.h in Headers */,
 				EA5FB890199AEC560057B4B4 /* CTASIHTTPRequestConfig.h in Headers */,
 				EA5FB899199AEC560057B4B4 /* GCDWebServer.h in Headers */,
-				0D952F0F2243B63000FB265F /* CastService.h in Headers */,
 				44BCC3F61AB77F7D001BCDAA /* XMLWriter.h in Headers */,
 				EA5FB8C3199AEC560057B4B4 /* DeviceServiceReachability.h in Headers */,
 				EA5FB885199AEC560057B4B4 /* CTASICacheDelegate.h in Headers */,
@@ -1420,7 +1053,6 @@
 				EA5FB8C8199AEC560057B4B4 /* ProgramInfo.h in Headers */,
 				449426301AF82F49006BAFF2 /* BlockRunner.h in Headers */,
 				EA5FB87B199AEC550057B4B4 /* DiscoveryManagerDelegate.h in Headers */,
-				0D952F132243B63000FB265F /* CastServiceChannel.h in Headers */,
 				EA5FB8A7199AEC560057B4B4 /* GCDWebServerFileRequest.h in Headers */,
 				EA5FB8AF199AEC560057B4B4 /* GCDWebServerErrorResponse.h in Headers */,
 				EA5FB8B5199AEC560057B4B4 /* CTGuid.h in Headers */,
@@ -1526,7 +1158,6 @@
 				EA5FB8F1199AEC570057B4B4 /* DIALService.m in Sources */,
 				EA5FB887199AEC560057B4B4 /* CTASIDataCompressor.m in Sources */,
 				EA5FB8AC199AEC560057B4B4 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
-				0D952F142243B63000FB265F /* CastServiceChannel.m in Sources */,
 				EA5FB8CB199AEC560057B4B4 /* SSDPSocketListener.m in Sources */,
 				EA5FB8DE199AEC560057B4B4 /* ServiceAsyncCommand.m in Sources */,
 				EA5FB8B2199AEC560057B4B4 /* GCDWebServerFileResponse.m in Sources */,
@@ -1571,7 +1202,6 @@
 				EA5FB88D199AEC560057B4B4 /* CTASIFormDataRequest.m in Sources */,
 				EA5FB893199AEC560057B4B4 /* CTASIInputStream.m in Sources */,
 				EA5FB8B4199AEC560057B4B4 /* GCDWebServerStreamedResponse.m in Sources */,
-				0D952F102243B63000FB265F /* CastWebAppSession.m in Sources */,
 				EA5FB8F7199AEC570057B4B4 /* AirPlayServiceMirrored.m in Sources */,
 				EA5FB86F199AEC550057B4B4 /* ConnectableDevice.m in Sources */,
 				EA5FB8E7199AEC560057B4B4 /* ServiceConfig.m in Sources */,
@@ -1593,13 +1223,11 @@
 				EA5FB8E5199AEC560057B4B4 /* NetcastTVServiceConfig.m in Sources */,
 				EA5FB88F199AEC560057B4B4 /* CTASIHTTPRequest.m in Sources */,
 				441C9ED61B3DBCB200F912D5 /* SubscriptionDeduplicator.m in Sources */,
-				0D952F112243B63000FB265F /* CastDiscoveryProvider.m in Sources */,
 				EA5FB89C199AEC560057B4B4 /* GCDWebServerConnection.m in Sources */,
 				EA5FB8A2199AEC560057B4B4 /* GCDWebServerRequest.m in Sources */,
 				EA5FB889199AEC560057B4B4 /* CTASIDataDecompressor.m in Sources */,
 				EA5FB8AA199AEC560057B4B4 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				EA5FB8E0199AEC560057B4B4 /* ServiceCommand.m in Sources */,
-				0D952F0E2243B63000FB265F /* CastService.m in Sources */,
 				BB9F7B7905ABBE72E0843AA0 /* MediaInfo.m in Sources */,
 				BB9F776F4924E08D116738B1 /* ImageInfo.m in Sources */,
 				BB9F706B1155B806AFBF3336 /* DLNAHTTPServer.m in Sources */,
@@ -1661,7 +1289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
@@ -1693,7 +1321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
@@ -1712,7 +1340,6 @@
 					"$(PROJECT_DIR)/modules/**",
 					"$(PROJECT_DIR)/modules/google-cast",
 					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "core/ConnectSDK-Prefix.pch";
@@ -1739,7 +1366,6 @@
 					"$(PROJECT_DIR)/modules/**",
 					"$(PROJECT_DIR)/modules/google-cast",
 					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
