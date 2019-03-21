@@ -22,130 +22,43 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0D952F0E2243B63000FB265F /* CastService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F052243B63000FB265F /* CastService.m */; };
+		0D952F0F2243B63000FB265F /* CastService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F062243B63000FB265F /* CastService.h */; };
+		0D952F102243B63000FB265F /* CastWebAppSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F072243B63000FB265F /* CastWebAppSession.m */; };
+		0D952F112243B63000FB265F /* CastDiscoveryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F082243B63000FB265F /* CastDiscoveryProvider.m */; };
+		0D952F122243B63000FB265F /* CastService_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F092243B63000FB265F /* CastService_Private.h */; };
+		0D952F132243B63000FB265F /* CastServiceChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F0A2243B63000FB265F /* CastServiceChannel.h */; };
+		0D952F142243B63000FB265F /* CastServiceChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D952F0B2243B63000FB265F /* CastServiceChannel.m */; };
+		0D952F152243B63000FB265F /* CastWebAppSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F0C2243B63000FB265F /* CastWebAppSession.h */; };
+		0D952F162243B63000FB265F /* CastDiscoveryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D952F0D2243B63000FB265F /* CastDiscoveryProvider.h */; };
+		0D952F182243B68000FB265F /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D952F172243B68000FB265F /* GoogleCast.framework */; };
 		0F446CC21A6D8353000BB1C0 /* PlayListControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F446CC11A6D8353000BB1C0 /* PlayListControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F446CC91A6D924D000BB1C0 /* MediaLaunchObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F446CC71A6D924D000BB1C0 /* MediaLaunchObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F446CCA1A6D924D000BB1C0 /* MediaLaunchObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F446CC81A6D924D000BB1C0 /* MediaLaunchObject.m */; };
-		440A031D1A854EDE0007E3D3 /* WebOSTVServiceSocketClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A031C1A854EDE0007E3D3 /* WebOSTVServiceSocketClientTests.m */; };
-		44166C561B4203880052F9EC /* libConnectSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EB1018FE485B00D75696 /* libConnectSDK.a */; };
-		44166C5C1B420B6A0052F9EC /* AirPlayServiceAcceptanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E98F991B1E733D0043BC70 /* AirPlayServiceAcceptanceTests.m */; };
-		44166C5D1B420B6A0052F9EC /* DLNAServiceAcceptanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447F63431B14FDC600699843 /* DLNAServiceAcceptanceTests.m */; };
-		44166C5E1B420C270052F9EC /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A37101B0FE03400E47DAC /* Expecta.framework */; };
-		44166C5F1B420C270052F9EC /* Specta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A37111B0FE03400E47DAC /* Specta.framework */; };
-		44166C601B420C2D0052F9EC /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44316F251AF3F17A000FE655 /* OCMock.framework */; };
-		44166C611B420C4E0052F9EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EBEF18FE48E900D75696 /* SystemConfiguration.framework */; };
-		44166C621B420C550052F9EC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF618E1A12E0A400CF344C /* libz.dylib */; };
-		44166C631B420C860052F9EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EBF118FE48EF00D75696 /* MobileCoreServices.framework */; };
-		44166C691B420DC20052F9EC /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF619A1A12E23200CF344C /* libicucore.dylib */; };
-		44166C6A1B420DE40052F9EC /* OCMArg+ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B286A1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m */; };
-		44166C6B1B420DF60052F9EC /* OCMStubRecorder+SpectaAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B11F511B16827C00F0156C /* OCMStubRecorder+SpectaAsync.m */; };
-		44166C6C1B420E1A0052F9EC /* EXPMatchers+matchRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 441FE0EE1B1528D0006C47CE /* EXPMatchers+matchRegex.m */; };
-		44166CB31B4AFE060052F9EC /* the-san-francisco-peaks-of-flagstaff-718x544.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44E98F961B1E72D80043BC70 /* the-san-francisco-peaks-of-flagstaff-718x544.jpg */; };
 		441C9ED51B3DBCB200F912D5 /* SubscriptionDeduplicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 441C9ED31B3DBCB200F912D5 /* SubscriptionDeduplicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		441C9ED61B3DBCB200F912D5 /* SubscriptionDeduplicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C9ED41B3DBCB200F912D5 /* SubscriptionDeduplicator.m */; };
-		441C9EFF1B3DD8C500F912D5 /* SubscriptionDeduplicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C9EFE1B3DD8C500F912D5 /* SubscriptionDeduplicatorTests.m */; };
-		441FE0EF1B1528D0006C47CE /* EXPMatchers+matchRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 441FE0EE1B1528D0006C47CE /* EXPMatchers+matchRegex.m */; };
-		44291C521A68B4C000280E5C /* SSDPDiscoveryProvider_FilteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44291C511A68B4C000280E5C /* SSDPDiscoveryProvider_FilteringTests.m */; };
 		443063C11A4210F0007779DA /* AirPlayServiceHTTPKeepAlive.h in Headers */ = {isa = PBXBuildFile; fileRef = 443063BF1A4210F0007779DA /* AirPlayServiceHTTPKeepAlive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		443063C21A4210F0007779DA /* AirPlayServiceHTTPKeepAlive.m in Sources */ = {isa = PBXBuildFile; fileRef = 443063C01A4210F0007779DA /* AirPlayServiceHTTPKeepAlive.m */; };
-		44316F291AF3F17A000FE655 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44316F251AF3F17A000FE655 /* OCMock.framework */; };
-		44316F2B1AF3F17A000FE655 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44316F271AF3F17A000FE655 /* OHHTTPStubs.framework */; };
-		4433F3DF1A421750008D9A04 /* AirPlayServiceHTTPKeepAliveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4433F3DE1A421750008D9A04 /* AirPlayServiceHTTPKeepAliveTests.m */; };
-		44758BBB1AE6C06200EC43A6 /* AirPlayServiceHTTPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44758BBA1AE6C06200EC43A6 /* AirPlayServiceHTTPTests.m */; };
-		44758BCE1AE7070600EC43A6 /* airplay_playbackinfo_ff.json in Resources */ = {isa = PBXBuildFile; fileRef = 44758BC91AE7070500EC43A6 /* airplay_playbackinfo_ff.json */; };
-		44758BCF1AE7070600EC43A6 /* airplay_playbackinfo_finished.json in Resources */ = {isa = PBXBuildFile; fileRef = 44758BCA1AE7070500EC43A6 /* airplay_playbackinfo_finished.json */; };
-		44758BD01AE7070600EC43A6 /* airplay_playbackinfo_paused.json in Resources */ = {isa = PBXBuildFile; fileRef = 44758BCB1AE7070500EC43A6 /* airplay_playbackinfo_paused.json */; };
-		44758BD11AE7070600EC43A6 /* airplay_playbackinfo_playing.json in Resources */ = {isa = PBXBuildFile; fileRef = 44758BCC1AE7070500EC43A6 /* airplay_playbackinfo_playing.json */; };
-		44758BD21AE7070600EC43A6 /* airplay_playbackinfo_rewind.json in Resources */ = {isa = PBXBuildFile; fileRef = 44758BCD1AE7070600EC43A6 /* airplay_playbackinfo_rewind.json */; };
-		44789D851B585525001D5098 /* RokuServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44789D841B585525001D5098 /* RokuServiceTests.m */; };
-		4480857F1A12A7BE00E13938 /* ConnectSDKDefaultPlatformsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4480857E1A12A7BE00E13938 /* ConnectSDKDefaultPlatformsTests.m */; };
-		448085801A12A7BE00E13938 /* libConnectSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EB1018FE485B00D75696 /* libConnectSDK.a */; };
-		448414F91AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 448414F81AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.m */; };
-		448B286B1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B286A1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m */; };
-		448F36C51A1BD64200536649 /* ZeroConfDiscoveryProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 448F36C41A1BD64200536649 /* ZeroConfDiscoveryProviderTests.m */; };
 		449426301AF82F49006BAFF2 /* BlockRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 4494262F1AF82F49006BAFF2 /* BlockRunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		449426331AF82F8E006BAFF2 /* BlockRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 449426321AF82F8E006BAFF2 /* BlockRunnerTests.m */; };
-		449426351AF83055006BAFF2 /* SynchronousBlockRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 449426341AF83055006BAFF2 /* SynchronousBlockRunnerTests.m */; };
 		449426381AF830A1006BAFF2 /* SynchronousBlockRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 449426361AF830A1006BAFF2 /* SynchronousBlockRunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		449426391AF830A1006BAFF2 /* SynchronousBlockRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 449426371AF830A1006BAFF2 /* SynchronousBlockRunner.m */; };
-		4494263B1AF8353A006BAFF2 /* DispatchQueueBlockRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4494263A1AF8353A006BAFF2 /* DispatchQueueBlockRunnerTests.m */; };
 		4494263E1AF83588006BAFF2 /* DispatchQueueBlockRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 4494263C1AF83588006BAFF2 /* DispatchQueueBlockRunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4494263F1AF83588006BAFF2 /* DispatchQueueBlockRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4494263D1AF83588006BAFF2 /* DispatchQueueBlockRunner.m */; };
 		4498D98C1A659F43008C0B72 /* NSDictionary+KeyPredicateSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 4498D98A1A659F43008C0B72 /* NSDictionary+KeyPredicateSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4498D98D1A659F43008C0B72 /* NSDictionary+KeyPredicateSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498D98B1A659F43008C0B72 /* NSDictionary+KeyPredicateSearch.m */; };
-		4498D9901A65A1D7008C0B72 /* NSDictionary+KeyPredicateSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498D98F1A65A1D7008C0B72 /* NSDictionary+KeyPredicateSearchTests.m */; };
-		4498D9921A65B69F008C0B72 /* DLNAServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498D9911A65B69F008C0B72 /* DLNAServiceTests.m */; };
-		4498D9941A65CC12008C0B72 /* getpositioninfo_response_xbox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9931A65CC12008C0B72 /* getpositioninfo_response_xbox.xml */; };
-		4498D9961A65ED16008C0B72 /* getpositioninfo_response_sonos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9951A65ED16008C0B72 /* getpositioninfo_response_sonos.xml */; };
-		4498D9991A660147008C0B72 /* gettransportinfo_response_xbox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9981A660147008C0B72 /* gettransportinfo_response_xbox.xml */; };
-		4498D99B1A6601A7008C0B72 /* gettransportinfo_response_sonos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D99A1A6601A7008C0B72 /* gettransportinfo_response_sonos.xml */; };
-		4498D99D1A66082B008C0B72 /* getvolume_response_xbox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D99C1A66082B008C0B72 /* getvolume_response_xbox.xml */; };
-		4498D99F1A660835008C0B72 /* getvolume_response_sonos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D99E1A660835008C0B72 /* getvolume_response_sonos.xml */; };
-		4498D9A11A660E82008C0B72 /* getmute_response_sonos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9A01A660E82008C0B72 /* getmute_response_sonos.xml */; };
-		4498D9A31A660EAE008C0B72 /* getmute_response_xbox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9A21A660EAE008C0B72 /* getmute_response_xbox.xml */; };
-		4498D9A51A66148F008C0B72 /* upnperror_response_xbox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9A41A66148F008C0B72 /* upnperror_response_xbox.xml */; };
-		4498D9A71A661500008C0B72 /* upnperror_response_sonos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4498D9A61A661500008C0B72 /* upnperror_response_sonos.xml */; };
-		4498D9A91A66F027008C0B72 /* DLNAHTTPServerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498D9A81A66F027008C0B72 /* DLNAHTTPServerTests.m */; };
-		449A37081B0FDC1C00E47DAC /* libConnectSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EB1018FE485B00D75696 /* libConnectSDK.a */; };
-		449A37121B0FE03400E47DAC /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A37101B0FE03400E47DAC /* Expecta.framework */; };
-		449A37131B0FE03400E47DAC /* Specta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A37111B0FE03400E47DAC /* Specta.framework */; };
-		449A37141B0FE30700E47DAC /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44316F251AF3F17A000FE655 /* OCMock.framework */; };
-		449A37151B0FE32E00E47DAC /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF619A1A12E23200CF344C /* libicucore.dylib */; };
-		449A37161B0FE33100E47DAC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF618E1A12E0A400CF344C /* libz.dylib */; };
-		449A371A1B0FE38700E47DAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EBEF18FE48E900D75696 /* SystemConfiguration.framework */; };
-		449A371C1B0FE3A500E47DAC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EBF118FE48EF00D75696 /* MobileCoreServices.framework */; };
-		449CC26B1AF9458E0064F2F7 /* ServiceDescriptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 449CC26A1AF9458E0064F2F7 /* ServiceDescriptionTests.m */; };
-		44A08FFA1B698E170077E87D /* WebAppSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A08FF91B698E170077E87D /* WebAppSessionTests.m */; };
-		44A08FFC1B698FCB0077E87D /* AirPlayServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A08FFB1B698FCB0077E87D /* AirPlayServiceTests.m */; };
 		44A090041B6BDDBC0077E87D /* NSObject+FeatureNotSupported_Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A090021B6BDDBC0077E87D /* NSObject+FeatureNotSupported_Private.m */; };
-		44A090071B6C07370077E87D /* XCTestCase+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A090061B6C07370077E87D /* XCTestCase+Common.m */; };
-		44A0E1A71B3B31DC00ADF95F /* WebOSWebAppSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A0E1A51B3B2F5C00ADF95F /* WebOSWebAppSessionTests.m */; };
-		44A5518F1AC1DF4C001AF783 /* NetcastTVServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A5518E1AC1DF4C001AF783 /* NetcastTVServiceTests.m */; };
-		44A551991AC338E0001AF783 /* WebOSTVServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A551981AC338E0001AF783 /* WebOSTVServiceTests.m */; };
 		44A5519F1AC36672001AF783 /* CommonMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A5519D1AC36672001AF783 /* CommonMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		44B11F521B16827C00F0156C /* OCMStubRecorder+SpectaAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B11F511B16827C00F0156C /* OCMStubRecorder+SpectaAsync.m */; };
-		44B43AF11B5DA99F004083E5 /* MediaInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B43AF01B5DA99F004083E5 /* MediaInfoTests.m */; };
-		44B43AFC1B6157F6004083E5 /* NSMutableDictionary+NilSafeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B43AFB1B6157F6004083E5 /* NSMutableDictionary+NilSafeTests.m */; };
 		44BCC3F61AB77F7D001BCDAA /* XMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 44BCC3F41AB77F7D001BCDAA /* XMLWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44BCC3F71AB77F7D001BCDAA /* XMLWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BCC3F51AB77F7D001BCDAA /* XMLWriter.m */; };
 		44C2CC941AB7948300B20E46 /* XMLWriter+ConvenienceMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 44C2CC921AB7948300B20E46 /* XMLWriter+ConvenienceMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44C2CC951AB7948300B20E46 /* XMLWriter+ConvenienceMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2CC931AB7948300B20E46 /* XMLWriter+ConvenienceMethods.m */; };
 		44C2CCA11AB7A33500B20E46 /* NSString+Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 44C2CC9F1AB7A33500B20E46 /* NSString+Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44C2CCA21AB7A33500B20E46 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2CCA01AB7A33500B20E46 /* NSString+Common.m */; };
-		44C390121B34DCAE00723388 /* DiscoveryManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C390111B34DCAE00723388 /* DiscoveryManagerTests.m */; };
-		44CF0E1A1B16ACD800B80FEF /* OCMArg+ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B286A1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m */; };
-		44D0ECEC1B55D8FC00E02A8B /* SubtitleInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0ECEB1B55D8FC00E02A8B /* SubtitleInfoTests.m */; };
 		44D0ECEF1B55DA9000E02A8B /* SubtitleInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D0ECED1B55DA9000E02A8B /* SubtitleInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44D0ECF01B55DA9000E02A8B /* SubtitleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0ECEE1B55DA9000E02A8B /* SubtitleInfo.m */; };
-		44D88F891A71C4A8009D9608 /* ssdp_device_description_chromecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F7A1A71C4A8009D9608 /* ssdp_device_description_chromecast.xml */; };
-		44D88F8A1A71C4A8009D9608 /* ssdp_device_description_firetv.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F7B1A71C4A8009D9608 /* ssdp_device_description_firetv.xml */; };
-		44D88F8B1A71C4A8009D9608 /* ssdp_device_description_roku2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F7C1A71C4A8009D9608 /* ssdp_device_description_roku2.xml */; };
-		44D88F8C1A71C4A8009D9608 /* ssdp_device_description_samsung_tv.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F7D1A71C4A8009D9608 /* ssdp_device_description_samsung_tv.xml */; };
-		44D88F8D1A71C4A8009D9608 /* ssdp_device_description_webos_minor.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F7E1A71C4A8009D9608 /* ssdp_device_description_webos_minor.xml */; };
-		44D88F8E1A71C4A8009D9608 /* ssdp_device_description_xbox_dial.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F7F1A71C4A8009D9608 /* ssdp_device_description_xbox_dial.xml */; };
-		44D88F8F1A71C4A8009D9608 /* ssdp_device_description_samsung_tv_dlna.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F811A71C4A8009D9608 /* ssdp_device_description_samsung_tv_dlna.xml */; };
-		44D88F901A71C4A8009D9608 /* ssdp_device_description_sonos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F821A71C4A8009D9608 /* ssdp_device_description_sonos.xml */; };
-		44D88F911A71C4A8009D9608 /* ssdp_device_description_sonos_no_root_services.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F831A71C4A8009D9608 /* ssdp_device_description_sonos_no_root_services.xml */; };
-		44D88F921A71C4A8009D9608 /* ssdp_device_description_webos_minor_dlna.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F841A71C4A8009D9608 /* ssdp_device_description_webos_minor_dlna.xml */; };
-		44D88F931A71C4A8009D9608 /* ssdp_device_description_xbox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F851A71C4A8009D9608 /* ssdp_device_description_xbox.xml */; };
-		44D88F941A71C4A8009D9608 /* ssdp_device_description.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F861A71C4A8009D9608 /* ssdp_device_description.xml */; };
-		44D88F951A71C4A8009D9608 /* ssdp_device_description_webos_minor_webos.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F881A71C4A8009D9608 /* ssdp_device_description_webos_minor_webos.xml */; };
-		44D88F971A71D6AF009D9608 /* ssdp_device_description_dlna_no_required_services.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F961A71D6AF009D9608 /* ssdp_device_description_dlna_no_required_services.xml */; };
-		44D88F991A71DB15009D9608 /* ssdp_device_description_dlna_root_no_required_services.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D88F981A71DB15009D9608 /* ssdp_device_description_dlna_root_no_required_services.xml */; };
-		44D8F7D21AB224BB00559FE3 /* ssdp_device_description_lg_speaker.xml in Resources */ = {isa = PBXBuildFile; fileRef = 44D8F7D11AB223BF00559FE3 /* ssdp_device_description_lg_speaker.xml */; };
-		44D8F7DA1AB27B4800559FE3 /* NSInvocation+ObjectGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D8F7D91AB27B4800559FE3 /* NSInvocation+ObjectGetter.m */; };
-		44D90AA91B06AA9E00A5CF2A /* AppStateChangeNotifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D90AA81B06AA9E00A5CF2A /* AppStateChangeNotifierTests.m */; };
 		44D90AAC1B06B26C00A5CF2A /* AppStateChangeNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D90AAA1B06B26C00A5CF2A /* AppStateChangeNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44D90AAD1B06B26C00A5CF2A /* AppStateChangeNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D90AAB1B06B26C00A5CF2A /* AppStateChangeNotifier.m */; };
-		44E98F5F1B1E63570043BC70 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E98F5D1B1E63570043BC70 /* OCMock.framework */; };
-		44E98F601B1E63570043BC70 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E98F5E1B1E63570043BC70 /* OHHTTPStubs.framework */; };
-		44E98F971B1E72DF0043BC70 /* the-san-francisco-peaks-of-flagstaff-718x544.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44E98F961B1E72D80043BC70 /* the-san-francisco-peaks-of-flagstaff-718x544.jpg */; };
 		44EF618B1A12DC7E00CF344C /* ConnectSDK-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = EA5FB79E199AEC550057B4B4 /* ConnectSDK-Prefix.pch */; };
-		44EF618D1A12E02700CF344C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EBF118FE48EF00D75696 /* MobileCoreServices.framework */; };
-		44EF618F1A12E0A400CF344C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF618E1A12E0A400CF344C /* libz.dylib */; };
-		44EF61921A12E10500CF344C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61EBEF18FE48E900D75696 /* SystemConfiguration.framework */; };
-		44EF61981A12E1C800CF344C /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF61971A12E1C800CF344C /* MediaAccessibility.framework */; };
-		44EF619B1A12E23200CF344C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EF619A1A12E23200CF344C /* libicucore.dylib */; };
-		44EF61A41A12FC8800CF344C /* SSDPDiscoveryProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF61A31A12FC8800CF344C /* SSDPDiscoveryProviderTests.m */; };
 		B2FA88C0C2447C5CAF1E61A4 /* NSMutableDictionary+NilSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FA8E8AF8F4302A1B5541EA /* NSMutableDictionary+NilSafe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2FA8A641C2CBEAFB9CF9097 /* NSMutableDictionary+NilSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA850A1C2BA371738A19B6 /* NSMutableDictionary+NilSafe.m */; };
 		B2FA8F2EAE3B0B60D75F9647 /* CapabilityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA8C3DF809E5088781B765 /* CapabilityConstants.m */; };
@@ -322,27 +235,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		44166C571B4203880052F9EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61EB0818FE485B00D75696 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA61EB0F18FE485B00D75696;
-			remoteInfo = ConnectSDK;
-		};
-		448085811A12A7BE00E13938 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61EB0818FE485B00D75696 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA61EB0F18FE485B00D75696;
-			remoteInfo = ConnectSDK;
-		};
-		449A37091B0FDC1C00E47DAC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61EB0818FE485B00D75696 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA61EB0F18FE485B00D75696;
-			remoteInfo = ConnectSDK;
-		};
 		EECAED56193F612100D31F61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA61EB0818FE485B00D75696 /* Project object */;
@@ -365,12 +257,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D952F052243B63000FB265F /* CastService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastService.m; path = google/CastService.m; sourceTree = "<group>"; };
+		0D952F062243B63000FB265F /* CastService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastService.h; path = google/CastService.h; sourceTree = "<group>"; };
+		0D952F072243B63000FB265F /* CastWebAppSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastWebAppSession.m; path = google/CastWebAppSession.m; sourceTree = "<group>"; };
+		0D952F082243B63000FB265F /* CastDiscoveryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastDiscoveryProvider.m; path = google/CastDiscoveryProvider.m; sourceTree = "<group>"; };
+		0D952F092243B63000FB265F /* CastService_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastService_Private.h; path = google/CastService_Private.h; sourceTree = "<group>"; };
+		0D952F0A2243B63000FB265F /* CastServiceChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastServiceChannel.h; path = google/CastServiceChannel.h; sourceTree = "<group>"; };
+		0D952F0B2243B63000FB265F /* CastServiceChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CastServiceChannel.m; path = google/CastServiceChannel.m; sourceTree = "<group>"; };
+		0D952F0C2243B63000FB265F /* CastWebAppSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastWebAppSession.h; path = google/CastWebAppSession.h; sourceTree = "<group>"; };
+		0D952F0D2243B63000FB265F /* CastDiscoveryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CastDiscoveryProvider.h; path = google/CastDiscoveryProvider.h; sourceTree = "<group>"; };
+		0D952F172243B68000FB265F /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleCast.framework; sourceTree = "<group>"; };
 		0F446CC11A6D8353000BB1C0 /* PlayListControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListControl.h; sourceTree = "<group>"; };
 		0F446CC71A6D924D000BB1C0 /* MediaLaunchObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaLaunchObject.h; sourceTree = "<group>"; };
 		0F446CC81A6D924D000BB1C0 /* MediaLaunchObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaLaunchObject.m; sourceTree = "<group>"; };
 		440A031C1A854EDE0007E3D3 /* WebOSTVServiceSocketClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebOSTVServiceSocketClientTests.m; sourceTree = "<group>"; };
 		440A031E1A85536A0007E3D3 /* WebOSTVServiceSocketClient_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebOSTVServiceSocketClient_Private.h; sourceTree = "<group>"; };
-		44166C501B4203880052F9EC /* ConnectSDKAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectSDKAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44166C531B4203880052F9EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441C9ED31B3DBCB200F912D5 /* SubscriptionDeduplicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionDeduplicator.h; sourceTree = "<group>"; };
 		441C9ED41B3DBCB200F912D5 /* SubscriptionDeduplicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionDeduplicator.m; sourceTree = "<group>"; };
@@ -397,7 +298,6 @@
 		447F63431B14FDC600699843 /* DLNAServiceAcceptanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNAServiceAcceptanceTests.m; sourceTree = "<group>"; };
 		447F63451B15000800699843 /* ConnectSDKIntegrationTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConnectSDKIntegrationTests-Prefix.pch"; sourceTree = "<group>"; };
 		447F93B91B714E8B005703EA /* WebOSTVService_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebOSTVService_Private.h; sourceTree = "<group>"; };
-		4480857A1A12A7BE00E13938 /* ConnectSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4480857E1A12A7BE00E13938 /* ConnectSDKDefaultPlatformsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectSDKDefaultPlatformsTests.m; sourceTree = "<group>"; };
 		448414F71AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMStubRecorder+XCTestExpectation.h"; sourceTree = "<group>"; };
 		448414F81AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMStubRecorder+XCTestExpectation.m"; sourceTree = "<group>"; };
@@ -429,7 +329,6 @@
 		4498D9A41A66148F008C0B72 /* upnperror_response_xbox.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = upnperror_response_xbox.xml; sourceTree = "<group>"; };
 		4498D9A61A661500008C0B72 /* upnperror_response_sonos.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = upnperror_response_sonos.xml; sourceTree = "<group>"; };
 		4498D9A81A66F027008C0B72 /* DLNAHTTPServerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNAHTTPServerTests.m; sourceTree = "<group>"; };
-		449A37021B0FDC1C00E47DAC /* ConnectSDKIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectSDKIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		449A37051B0FDC1C00E47DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		449A37101B0FE03400E47DAC /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Expecta.framework; sourceTree = "<group>"; };
 		449A37111B0FE03400E47DAC /* Specta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Specta.framework; sourceTree = "<group>"; };
@@ -673,57 +572,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		44166C4D1B4203880052F9EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44166C601B420C2D0052F9EC /* OCMock.framework in Frameworks */,
-				44166C631B420C860052F9EC /* MobileCoreServices.framework in Frameworks */,
-				44166C611B420C4E0052F9EC /* SystemConfiguration.framework in Frameworks */,
-				44166C561B4203880052F9EC /* libConnectSDK.a in Frameworks */,
-				44166C5F1B420C270052F9EC /* Specta.framework in Frameworks */,
-				44166C5E1B420C270052F9EC /* Expecta.framework in Frameworks */,
-				44166C691B420DC20052F9EC /* libicucore.dylib in Frameworks */,
-				44166C621B420C550052F9EC /* libz.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		448085771A12A7BE00E13938 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44E98F601B1E63570043BC70 /* OHHTTPStubs.framework in Frameworks */,
-				44E98F5F1B1E63570043BC70 /* OCMock.framework in Frameworks */,
-				448085801A12A7BE00E13938 /* libConnectSDK.a in Frameworks */,
-				44EF61981A12E1C800CF344C /* MediaAccessibility.framework in Frameworks */,
-				44EF618D1A12E02700CF344C /* MobileCoreServices.framework in Frameworks */,
-				44EF61921A12E10500CF344C /* SystemConfiguration.framework in Frameworks */,
-				44EF619B1A12E23200CF344C /* libicucore.dylib in Frameworks */,
-				44316F2B1AF3F17A000FE655 /* OHHTTPStubs.framework in Frameworks */,
-				44316F291AF3F17A000FE655 /* OCMock.framework in Frameworks */,
-				44EF618F1A12E0A400CF344C /* libz.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		449A36FF1B0FDC1C00E47DAC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				449A37161B0FE33100E47DAC /* libz.dylib in Frameworks */,
-				449A37151B0FE32E00E47DAC /* libicucore.dylib in Frameworks */,
-				449A37141B0FE30700E47DAC /* OCMock.framework in Frameworks */,
-				449A37081B0FDC1C00E47DAC /* libConnectSDK.a in Frameworks */,
-				449A37131B0FE03400E47DAC /* Specta.framework in Frameworks */,
-				449A371A1B0FE38700E47DAC /* SystemConfiguration.framework in Frameworks */,
-				449A37121B0FE03400E47DAC /* Expecta.framework in Frameworks */,
-				449A371C1B0FE3A500E47DAC /* MobileCoreServices.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EA61EB0D18FE485B00D75696 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D952F182243B68000FB265F /* GoogleCast.framework in Frameworks */,
 				EAD7F8601906E99C00B33AAB /* UIKit.framework in Frameworks */,
 				EAD7F85E1906E98200B33AAB /* AVFoundation.framework in Frameworks */,
 				EA61EBF218FE48EF00D75696 /* MobileCoreServices.framework in Frameworks */,
@@ -1023,6 +876,15 @@
 		EA5FB79C199AEC550057B4B4 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				0D952F0D2243B63000FB265F /* CastDiscoveryProvider.h */,
+				0D952F082243B63000FB265F /* CastDiscoveryProvider.m */,
+				0D952F092243B63000FB265F /* CastService_Private.h */,
+				0D952F062243B63000FB265F /* CastService.h */,
+				0D952F052243B63000FB265F /* CastService.m */,
+				0D952F0A2243B63000FB265F /* CastServiceChannel.h */,
+				0D952F0B2243B63000FB265F /* CastServiceChannel.m */,
+				0D952F0C2243B63000FB265F /* CastWebAppSession.h */,
+				0D952F072243B63000FB265F /* CastWebAppSession.m */,
 				EA5F82F3199BDCD300B7302B /* ConnectSDK.h */,
 				EA5FB79E199AEC550057B4B4 /* ConnectSDK-Prefix.pch */,
 				EA5FB79F199AEC550057B4B4 /* Devices */,
@@ -1423,9 +1285,6 @@
 			isa = PBXGroup;
 			children = (
 				EA61EB1018FE485B00D75696 /* libConnectSDK.a */,
-				4480857A1A12A7BE00E13938 /* ConnectSDKTests.xctest */,
-				449A37021B0FDC1C00E47DAC /* ConnectSDKIntegrationTests.xctest */,
-				44166C501B4203880052F9EC /* ConnectSDKAcceptanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1433,6 +1292,7 @@
 		EA61EB1218FE485B00D75696 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D952F172243B68000FB265F /* GoogleCast.framework */,
 				44EF619A1A12E23200CF344C /* libicucore.dylib */,
 				44EF61971A12E1C800CF344C /* MediaAccessibility.framework */,
 				44EF618E1A12E0A400CF344C /* libz.dylib */,
@@ -1470,7 +1330,9 @@
 				EA5FB8DC199AEC560057B4B4 /* WebAppLauncher.h in Headers */,
 				EA5FB8BB199AEC560057B4B4 /* AppInfo.h in Headers */,
 				EA5FB8B1199AEC560057B4B4 /* GCDWebServerFileResponse.h in Headers */,
+				0D952F122243B63000FB265F /* CastService_Private.h in Headers */,
 				EA5FB896199AEC560057B4B4 /* CTASIProgressDelegate.h in Headers */,
+				0D952F162243B63000FB265F /* CastDiscoveryProvider.h in Headers */,
 				EA5FB88E199AEC560057B4B4 /* CTASIHTTPRequest.h in Headers */,
 				EA5FB8E6199AEC560057B4B4 /* ServiceConfig.h in Headers */,
 				44C2CCA11AB7A33500B20E46 /* NSString+Common.h in Headers */,
@@ -1485,6 +1347,7 @@
 				44D90AAC1B06B26C00A5CF2A /* AppStateChangeNotifier.h in Headers */,
 				EA5FB8DD199AEC560057B4B4 /* ServiceAsyncCommand.h in Headers */,
 				0F446CC91A6D924D000BB1C0 /* MediaLaunchObject.h in Headers */,
+				0D952F152243B63000FB265F /* CastWebAppSession.h in Headers */,
 				EA5FB8CA199AEC560057B4B4 /* SSDPSocketListener.h in Headers */,
 				EA5FB8DF199AEC560057B4B4 /* ServiceCommand.h in Headers */,
 				EA5FB8E1199AEC560057B4B4 /* ServiceCommandDelegate.h in Headers */,
@@ -1507,6 +1370,7 @@
 				EA5FB8FA199AEC570057B4B4 /* WebOSTVServiceSocketClient.h in Headers */,
 				EA5FB890199AEC560057B4B4 /* CTASIHTTPRequestConfig.h in Headers */,
 				EA5FB899199AEC560057B4B4 /* GCDWebServer.h in Headers */,
+				0D952F0F2243B63000FB265F /* CastService.h in Headers */,
 				44BCC3F61AB77F7D001BCDAA /* XMLWriter.h in Headers */,
 				EA5FB8C3199AEC560057B4B4 /* DeviceServiceReachability.h in Headers */,
 				EA5FB885199AEC560057B4B4 /* CTASICacheDelegate.h in Headers */,
@@ -1554,6 +1418,7 @@
 				EA5FB8C8199AEC560057B4B4 /* ProgramInfo.h in Headers */,
 				449426301AF82F49006BAFF2 /* BlockRunner.h in Headers */,
 				EA5FB87B199AEC550057B4B4 /* DiscoveryManagerDelegate.h in Headers */,
+				0D952F132243B63000FB265F /* CastServiceChannel.h in Headers */,
 				EA5FB8A7199AEC560057B4B4 /* GCDWebServerFileRequest.h in Headers */,
 				EA5FB8AF199AEC560057B4B4 /* GCDWebServerErrorResponse.h in Headers */,
 				EA5FB8B5199AEC560057B4B4 /* CTGuid.h in Headers */,
@@ -1573,60 +1438,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		44166C4F1B4203880052F9EC /* ConnectSDKAcceptanceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 44166C5B1B4203880052F9EC /* Build configuration list for PBXNativeTarget "ConnectSDKAcceptanceTests" */;
-			buildPhases = (
-				44166C4C1B4203880052F9EC /* Sources */,
-				44166C4D1B4203880052F9EC /* Frameworks */,
-				44166C4E1B4203880052F9EC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				44166C581B4203880052F9EC /* PBXTargetDependency */,
-			);
-			name = ConnectSDKAcceptanceTests;
-			productName = ConnectSDKAcceptanceTests;
-			productReference = 44166C501B4203880052F9EC /* ConnectSDKAcceptanceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		448085791A12A7BE00E13938 /* ConnectSDKTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 448085851A12A7BE00E13938 /* Build configuration list for PBXNativeTarget "ConnectSDKTests" */;
-			buildPhases = (
-				448085761A12A7BE00E13938 /* Sources */,
-				448085771A12A7BE00E13938 /* Frameworks */,
-				448085781A12A7BE00E13938 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				448085821A12A7BE00E13938 /* PBXTargetDependency */,
-			);
-			name = ConnectSDKTests;
-			productName = ConnectSDKTests;
-			productReference = 4480857A1A12A7BE00E13938 /* ConnectSDKTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		449A37011B0FDC1C00E47DAC /* ConnectSDKIntegrationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 449A370B1B0FDC1C00E47DAC /* Build configuration list for PBXNativeTarget "ConnectSDKIntegrationTests" */;
-			buildPhases = (
-				449A36FE1B0FDC1C00E47DAC /* Sources */,
-				449A36FF1B0FDC1C00E47DAC /* Frameworks */,
-				449A37001B0FDC1C00E47DAC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				449A370A1B0FDC1C00E47DAC /* PBXTargetDependency */,
-			);
-			name = ConnectSDKIntegrationTests;
-			productName = ConnectSDKIntegrationTests;
-			productReference = 449A37021B0FDC1C00E47DAC /* ConnectSDKIntegrationTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		EA61EB0F18FE485B00D75696 /* ConnectSDK */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA61EB3318FE485B00D75696 /* Build configuration list for PBXNativeTarget "ConnectSDK" */;
@@ -1654,17 +1465,6 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "LG Electronics";
-				TargetAttributes = {
-					44166C4F1B4203880052F9EC = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
-					448085791A12A7BE00E13938 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					449A37011B0FDC1C00E47DAC = {
-						CreatedOnToolsVersion = 6.3.1;
-					};
-				};
 			};
 			buildConfigurationList = EA61EB0B18FE485B00D75696 /* Build configuration list for PBXProject "ConnectSDK" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1680,69 +1480,9 @@
 			targets = (
 				EA61EB0F18FE485B00D75696 /* ConnectSDK */,
 				EECAED52193F611900D31F61 /* Framework */,
-				448085791A12A7BE00E13938 /* ConnectSDKTests */,
-				449A37011B0FDC1C00E47DAC /* ConnectSDKIntegrationTests */,
-				44166C4F1B4203880052F9EC /* ConnectSDKAcceptanceTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		44166C4E1B4203880052F9EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44166CB31B4AFE060052F9EC /* the-san-francisco-peaks-of-flagstaff-718x544.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		448085781A12A7BE00E13938 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44D88F941A71C4A8009D9608 /* ssdp_device_description.xml in Resources */,
-				44D88F8A1A71C4A8009D9608 /* ssdp_device_description_firetv.xml in Resources */,
-				4498D99F1A660835008C0B72 /* getvolume_response_sonos.xml in Resources */,
-				4498D9991A660147008C0B72 /* gettransportinfo_response_xbox.xml in Resources */,
-				44D88F901A71C4A8009D9608 /* ssdp_device_description_sonos.xml in Resources */,
-				44D88F971A71D6AF009D9608 /* ssdp_device_description_dlna_no_required_services.xml in Resources */,
-				44758BD01AE7070600EC43A6 /* airplay_playbackinfo_paused.json in Resources */,
-				44758BD21AE7070600EC43A6 /* airplay_playbackinfo_rewind.json in Resources */,
-				44D88F8F1A71C4A8009D9608 /* ssdp_device_description_samsung_tv_dlna.xml in Resources */,
-				44D88F911A71C4A8009D9608 /* ssdp_device_description_sonos_no_root_services.xml in Resources */,
-				44758BCE1AE7070600EC43A6 /* airplay_playbackinfo_ff.json in Resources */,
-				4498D9941A65CC12008C0B72 /* getpositioninfo_response_xbox.xml in Resources */,
-				4498D9A11A660E82008C0B72 /* getmute_response_sonos.xml in Resources */,
-				44D88F891A71C4A8009D9608 /* ssdp_device_description_chromecast.xml in Resources */,
-				4498D99D1A66082B008C0B72 /* getvolume_response_xbox.xml in Resources */,
-				4498D9A31A660EAE008C0B72 /* getmute_response_xbox.xml in Resources */,
-				4498D9961A65ED16008C0B72 /* getpositioninfo_response_sonos.xml in Resources */,
-				44D88F8E1A71C4A8009D9608 /* ssdp_device_description_xbox_dial.xml in Resources */,
-				44D8F7D21AB224BB00559FE3 /* ssdp_device_description_lg_speaker.xml in Resources */,
-				44D88F8C1A71C4A8009D9608 /* ssdp_device_description_samsung_tv.xml in Resources */,
-				44E98F971B1E72DF0043BC70 /* the-san-francisco-peaks-of-flagstaff-718x544.jpg in Resources */,
-				4498D99B1A6601A7008C0B72 /* gettransportinfo_response_sonos.xml in Resources */,
-				44D88F8D1A71C4A8009D9608 /* ssdp_device_description_webos_minor.xml in Resources */,
-				44D88F931A71C4A8009D9608 /* ssdp_device_description_xbox.xml in Resources */,
-				44D88F921A71C4A8009D9608 /* ssdp_device_description_webos_minor_dlna.xml in Resources */,
-				44D88F8B1A71C4A8009D9608 /* ssdp_device_description_roku2.xml in Resources */,
-				4498D9A71A661500008C0B72 /* upnperror_response_sonos.xml in Resources */,
-				44D88F951A71C4A8009D9608 /* ssdp_device_description_webos_minor_webos.xml in Resources */,
-				44758BD11AE7070600EC43A6 /* airplay_playbackinfo_playing.json in Resources */,
-				4498D9A51A66148F008C0B72 /* upnperror_response_xbox.xml in Resources */,
-				44D88F991A71DB15009D9608 /* ssdp_device_description_dlna_root_no_required_services.xml in Resources */,
-				44758BCF1AE7070600EC43A6 /* airplay_playbackinfo_finished.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		449A37001B0FDC1C00E47DAC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		EECAED51193F60C900D31F61 /* ShellScript */ = {
@@ -1774,65 +1514,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		44166C4C1B4203880052F9EC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44166C6B1B420DF60052F9EC /* OCMStubRecorder+SpectaAsync.m in Sources */,
-				44166C5C1B420B6A0052F9EC /* AirPlayServiceAcceptanceTests.m in Sources */,
-				44166C6A1B420DE40052F9EC /* OCMArg+ArgumentCaptor.m in Sources */,
-				44166C5D1B420B6A0052F9EC /* DLNAServiceAcceptanceTests.m in Sources */,
-				44166C6C1B420E1A0052F9EC /* EXPMatchers+matchRegex.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		448085761A12A7BE00E13938 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44C390121B34DCAE00723388 /* DiscoveryManagerTests.m in Sources */,
-				44EF61A41A12FC8800CF344C /* SSDPDiscoveryProviderTests.m in Sources */,
-				449426351AF83055006BAFF2 /* SynchronousBlockRunnerTests.m in Sources */,
-				4433F3DF1A421750008D9A04 /* AirPlayServiceHTTPKeepAliveTests.m in Sources */,
-				44A551991AC338E0001AF783 /* WebOSTVServiceTests.m in Sources */,
-				44B43AF11B5DA99F004083E5 /* MediaInfoTests.m in Sources */,
-				449426331AF82F8E006BAFF2 /* BlockRunnerTests.m in Sources */,
-				4494263B1AF8353A006BAFF2 /* DispatchQueueBlockRunnerTests.m in Sources */,
-				44D8F7DA1AB27B4800559FE3 /* NSInvocation+ObjectGetter.m in Sources */,
-				449CC26B1AF9458E0064F2F7 /* ServiceDescriptionTests.m in Sources */,
-				44A08FFC1B698FCB0077E87D /* AirPlayServiceTests.m in Sources */,
-				448B286B1B03DAEA00DFF18F /* OCMArg+ArgumentCaptor.m in Sources */,
-				44291C521A68B4C000280E5C /* SSDPDiscoveryProvider_FilteringTests.m in Sources */,
-				4480857F1A12A7BE00E13938 /* ConnectSDKDefaultPlatformsTests.m in Sources */,
-				44789D851B585525001D5098 /* RokuServiceTests.m in Sources */,
-				4498D9A91A66F027008C0B72 /* DLNAHTTPServerTests.m in Sources */,
-				448F36C51A1BD64200536649 /* ZeroConfDiscoveryProviderTests.m in Sources */,
-				441C9EFF1B3DD8C500F912D5 /* SubscriptionDeduplicatorTests.m in Sources */,
-				4498D9921A65B69F008C0B72 /* DLNAServiceTests.m in Sources */,
-				44758BBB1AE6C06200EC43A6 /* AirPlayServiceHTTPTests.m in Sources */,
-				440A031D1A854EDE0007E3D3 /* WebOSTVServiceSocketClientTests.m in Sources */,
-				448414F91AEB27F400124EE9 /* OCMStubRecorder+XCTestExpectation.m in Sources */,
-				44B43AFC1B6157F6004083E5 /* NSMutableDictionary+NilSafeTests.m in Sources */,
-				44D90AA91B06AA9E00A5CF2A /* AppStateChangeNotifierTests.m in Sources */,
-				44A08FFA1B698E170077E87D /* WebAppSessionTests.m in Sources */,
-				44A5518F1AC1DF4C001AF783 /* NetcastTVServiceTests.m in Sources */,
-				44D0ECEC1B55D8FC00E02A8B /* SubtitleInfoTests.m in Sources */,
-				4498D9901A65A1D7008C0B72 /* NSDictionary+KeyPredicateSearchTests.m in Sources */,
-				44A090071B6C07370077E87D /* XCTestCase+Common.m in Sources */,
-				44A0E1A71B3B31DC00ADF95F /* WebOSWebAppSessionTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		449A36FE1B0FDC1C00E47DAC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				441FE0EF1B1528D0006C47CE /* EXPMatchers+matchRegex.m in Sources */,
-				44B11F521B16827C00F0156C /* OCMStubRecorder+SpectaAsync.m in Sources */,
-				44CF0E1A1B16ACD800B80FEF /* OCMArg+ArgumentCaptor.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EA61EB0C18FE485B00D75696 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1843,6 +1524,7 @@
 				EA5FB8F1199AEC570057B4B4 /* DIALService.m in Sources */,
 				EA5FB887199AEC560057B4B4 /* CTASIDataCompressor.m in Sources */,
 				EA5FB8AC199AEC560057B4B4 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
+				0D952F142243B63000FB265F /* CastServiceChannel.m in Sources */,
 				EA5FB8CB199AEC560057B4B4 /* SSDPSocketListener.m in Sources */,
 				EA5FB8DE199AEC560057B4B4 /* ServiceAsyncCommand.m in Sources */,
 				EA5FB8B2199AEC560057B4B4 /* GCDWebServerFileResponse.m in Sources */,
@@ -1887,6 +1569,7 @@
 				EA5FB88D199AEC560057B4B4 /* CTASIFormDataRequest.m in Sources */,
 				EA5FB893199AEC560057B4B4 /* CTASIInputStream.m in Sources */,
 				EA5FB8B4199AEC560057B4B4 /* GCDWebServerStreamedResponse.m in Sources */,
+				0D952F102243B63000FB265F /* CastWebAppSession.m in Sources */,
 				EA5FB8F7199AEC570057B4B4 /* AirPlayServiceMirrored.m in Sources */,
 				EA5FB86F199AEC550057B4B4 /* ConnectableDevice.m in Sources */,
 				EA5FB8E7199AEC560057B4B4 /* ServiceConfig.m in Sources */,
@@ -1908,11 +1591,13 @@
 				EA5FB8E5199AEC560057B4B4 /* NetcastTVServiceConfig.m in Sources */,
 				EA5FB88F199AEC560057B4B4 /* CTASIHTTPRequest.m in Sources */,
 				441C9ED61B3DBCB200F912D5 /* SubscriptionDeduplicator.m in Sources */,
+				0D952F112243B63000FB265F /* CastDiscoveryProvider.m in Sources */,
 				EA5FB89C199AEC560057B4B4 /* GCDWebServerConnection.m in Sources */,
 				EA5FB8A2199AEC560057B4B4 /* GCDWebServerRequest.m in Sources */,
 				EA5FB889199AEC560057B4B4 /* CTASIDataDecompressor.m in Sources */,
 				EA5FB8AA199AEC560057B4B4 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				EA5FB8E0199AEC560057B4B4 /* ServiceCommand.m in Sources */,
+				0D952F0E2243B63000FB265F /* CastService.m in Sources */,
 				BB9F7B7905ABBE72E0843AA0 /* MediaInfo.m in Sources */,
 				BB9F776F4924E08D116738B1 /* ImageInfo.m in Sources */,
 				BB9F706B1155B806AFBF3336 /* DLNAHTTPServer.m in Sources */,
@@ -1924,21 +1609,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		44166C581B4203880052F9EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EA61EB0F18FE485B00D75696 /* ConnectSDK */;
-			targetProxy = 44166C571B4203880052F9EC /* PBXContainerItemProxy */;
-		};
-		448085821A12A7BE00E13938 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EA61EB0F18FE485B00D75696 /* ConnectSDK */;
-			targetProxy = 448085811A12A7BE00E13938 /* PBXContainerItemProxy */;
-		};
-		449A370A1B0FDC1C00E47DAC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EA61EB0F18FE485B00D75696 /* ConnectSDK */;
-			targetProxy = 449A37091B0FDC1C00E47DAC /* PBXContainerItemProxy */;
-		};
 		EECAED57193F612100D31F61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA61EB0F18FE485B00D75696 /* ConnectSDK */;
@@ -1958,202 +1628,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		44166C591B4203880052F9EC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/core/ConnectSDKTests/Frameworks",
-					"$(PROJECT_DIR)/core/ConnectSDKIntegrationTests/Frameworks",
-					"$(PROJECT_DIR)/modules/google-cast",
-					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "core/ConnectSDKIntegrationTests/ConnectSDKIntegrationTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = core/ConnectSDKAcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		44166C5A1B4203880052F9EC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/core/ConnectSDKTests/Frameworks",
-					"$(PROJECT_DIR)/core/ConnectSDKIntegrationTests/Frameworks",
-					"$(PROJECT_DIR)/modules/google-cast",
-					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "core/ConnectSDKIntegrationTests/ConnectSDKIntegrationTests-Prefix.pch";
-				INFOPLIST_FILE = core/ConnectSDKAcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		448085831A12A7BE00E13938 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/modules/google-cast",
-					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-					"$(PROJECT_DIR)/core/ConnectSDKTests/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "core/ConnectSDKTests/ConnectSDKTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = core/ConnectSDKTests/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		448085841A12A7BE00E13938 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/modules/google-cast",
-					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-					"$(PROJECT_DIR)/core/ConnectSDKTests/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "core/ConnectSDKTests/ConnectSDKTests-Prefix.pch";
-				INFOPLIST_FILE = core/ConnectSDKTests/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		449A370C1B0FDC1C00E47DAC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/core/ConnectSDKIntegrationTests/Frameworks",
-					"$(PROJECT_DIR)/core/ConnectSDKTests/Frameworks",
-					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-					"$(PROJECT_DIR)/modules/google-cast",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "core/ConnectSDKIntegrationTests/ConnectSDKIntegrationTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = core/ConnectSDKIntegrationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		449A370D1B0FDC1C00E47DAC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/core/ConnectSDKIntegrationTests/Frameworks",
-					"$(PROJECT_DIR)/core/ConnectSDKTests/Frameworks",
-					"$(PROJECT_DIR)/modules/firetv/Frameworks",
-					"$(PROJECT_DIR)/modules/google-cast",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "core/ConnectSDKIntegrationTests/ConnectSDKIntegrationTests-Prefix.pch";
-				INFOPLIST_FILE = core/ConnectSDKIntegrationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		EA61EB3118FE485B00D75696 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2185,7 +1659,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
@@ -2217,7 +1691,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
@@ -2236,6 +1710,7 @@
 					"$(PROJECT_DIR)/modules/**",
 					"$(PROJECT_DIR)/modules/google-cast",
 					"$(PROJECT_DIR)/modules/firetv/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "core/ConnectSDK-Prefix.pch";
@@ -2262,6 +1737,7 @@
 					"$(PROJECT_DIR)/modules/**",
 					"$(PROJECT_DIR)/modules/google-cast",
 					"$(PROJECT_DIR)/modules/firetv/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2297,33 +1773,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		44166C5B1B4203880052F9EC /* Build configuration list for PBXNativeTarget "ConnectSDKAcceptanceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				44166C591B4203880052F9EC /* Debug */,
-				44166C5A1B4203880052F9EC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		448085851A12A7BE00E13938 /* Build configuration list for PBXNativeTarget "ConnectSDKTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				448085831A12A7BE00E13938 /* Debug */,
-				448085841A12A7BE00E13938 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		449A370B1B0FDC1C00E47DAC /* Build configuration list for PBXNativeTarget "ConnectSDKIntegrationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				449A370C1B0FDC1C00E47DAC /* Debug */,
-				449A370D1B0FDC1C00E47DAC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EA61EB0B18FE485B00D75696 /* Build configuration list for PBXProject "ConnectSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
