@@ -19,9 +19,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GoogleCast/GoogleCast.h>
 #import "Capability.h"
 #import "WebAppLauncher.h"
+
+#import <GoogleCast/GCKCastChannel.h>
 
 @class CastWebAppSession;
 

@@ -22,8 +22,9 @@
 #import "CastService.h"
 #import "WebAppSession.h"
 #import "MediaControl.h"
-#import "CastServiceChannel.h"
 
+@class CastServiceChannel;
+@class GCKApplicationMetadata;
 
 @interface CastWebAppSession : WebAppSession
 
