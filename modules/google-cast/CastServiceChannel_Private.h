@@ -1,5 +1,5 @@
 //
-//  CastServiceChannel.h
+//  CastServiceChannel_Private.h
 //  Connect SDK
 //
 //  Created by Jeremy White on 2/20/14.

@@ -18,7 +18,7 @@
 //  limitations under the License.
 //
 
-#import "CastServiceChannel.h"
+#import "CastServiceChannel_Private.h"
 #import "ConnectError.h"
 #import "CastWebAppSession.h"
 
