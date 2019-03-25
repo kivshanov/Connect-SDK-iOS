@@ -28,8 +28,8 @@
 		0A551B382248D7D600652EE2 /* CastService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A551B2A2248D7D500652EE2 /* CastService.m */; };
 		0A551B392248D7D600652EE2 /* CastWebAppSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A551B2C2248D7D500652EE2 /* CastWebAppSession.m */; };
 		0A551B3C2248D7D600652EE2 /* CastDiscoveryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A551B302248D7D500652EE2 /* CastDiscoveryProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0A551B3D2248D7D600652EE2 /* CastServiceChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A551B322248D7D500652EE2 /* CastServiceChannel.h */; };
 		0A551B3F2248D7D600652EE2 /* CastService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A551B342248D7D500652EE2 /* CastService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A551B412248DE3400652EE2 /* CastServiceChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A551B322248D7D500652EE2 /* CastServiceChannel.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		0F446CC21A6D8353000BB1C0 /* PlayListControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F446CC11A6D8353000BB1C0 /* PlayListControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F446CC91A6D924D000BB1C0 /* MediaLaunchObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F446CC71A6D924D000BB1C0 /* MediaLaunchObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F446CCA1A6D924D000BB1C0 /* MediaLaunchObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F446CC81A6D924D000BB1C0 /* MediaLaunchObject.m */; };
@@ -1003,6 +1003,7 @@
 				EA5FB8D9199AEC560057B4B4 /* ToastControl.h in Headers */,
 				44C2CC941AB7948300B20E46 /* XMLWriter+ConvenienceMethods.h in Headers */,
 				EA5FB8A9199AEC560057B4B4 /* GCDWebServerMultiPartFormRequest.h in Headers */,
+				0A551B412248DE3400652EE2 /* CastServiceChannel.h in Headers */,
 				EA5FB891199AEC560057B4B4 /* CTASIHTTPRequestDelegate.h in Headers */,
 				EA5FB8B9199AEC560057B4B4 /* CTXMLReader.h in Headers */,
 				EA5FB8FC199AEC570057B4B4 /* NetcastTVService.h in Headers */,
@@ -1103,7 +1104,6 @@
 				EA5FB87B199AEC550057B4B4 /* DiscoveryManagerDelegate.h in Headers */,
 				EA5FB8A7199AEC560057B4B4 /* GCDWebServerFileRequest.h in Headers */,
 				EA5FB8AF199AEC560057B4B4 /* GCDWebServerErrorResponse.h in Headers */,
-				0A551B3D2248D7D600652EE2 /* CastServiceChannel.h in Headers */,
 				EA5FB8B5199AEC560057B4B4 /* CTGuid.h in Headers */,
 				EA5FB902199AEC570057B4B4 /* LaunchSession.h in Headers */,
 				EA5FB8B7199AEC560057B4B4 /* LGSRWebSocket.h in Headers */,
@@ -1391,7 +1391,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Connect_SDK.dst;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/modules/**",
@@ -1418,7 +1417,6 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /tmp/Connect_SDK.dst;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/modules/**",
@@ -1441,7 +1439,6 @@
 		EECAED54193F611900D31F61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_BITCODE = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
@@ -1451,7 +1448,6 @@
 		EECAED55193F611900D31F61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_BITCODE = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";

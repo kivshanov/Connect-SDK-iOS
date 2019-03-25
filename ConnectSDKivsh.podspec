@@ -116,6 +116,7 @@ Pod::Spec.new do |s|
     sp.framework = "GoogleCast"
     sp.xcconfig = {
         "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/google-cast-sdk/GoogleCastSDK-#{cast_version}-Release",
+        'ENABLE_BITCODE' => 'NO'
     }
   end
 end
