@@ -619,6 +619,10 @@ static NSString *const kSubtitleTrackDefaultLanguage = @"en";
     @try
     {
         result = [_castMediaControlChannel stop];
+        
+        if (_launchingAppId) {
+            [_castDeviceManager leaveApplication];
+        }
     } @catch (NSException *exception)
     {
         // this exception will be caught when trying to send command with no video
