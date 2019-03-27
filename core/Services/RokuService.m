@@ -31,10 +31,12 @@
 {
     DIALService *_dialService;
     DeviceServiceReachability *_serviceReachability;
+    AppInfo *currentApp;
 }
 @end
 
 static NSMutableArray *registeredApps = nil;
+static const NSString *kRokuMediaPlayerAppID = @"15985";
 
 @implementation RokuService
 
@@ -441,6 +443,50 @@ static NSMutableArray *registeredApps = nil;
     [command send];
 }
 
+- (void)getCurrentAppListWithSuccess:(AppListSuccessBlock)success failure:(FailureBlock)failure
+{
+    NSURL *targetURL = [self.serviceDescription.commandURL URLByAppendingPathComponent:@"query"];
+    targetURL = [targetURL URLByAppendingPathComponent:@"active-app"];
+    
+    ServiceCommand *command = [ServiceCommand commandWithDelegate:self.serviceCommandDelegate target:targetURL payload:nil];
+    command.HTTPMethod = @"GET";
+    command.callbackComplete = ^(NSString *responseObject)
+    {
+        NSError *xmlError;
+        NSDictionary *appListDictionary = [CTXMLReader dictionaryForXMLString:responseObject error:&xmlError];
+        
+        if (appListDictionary) {
+            NSArray *apps;
+            id appsObject = [appListDictionary valueForKeyPath:@"active-app.app"];
+            if ([appsObject isKindOfClass:[NSDictionary class]]) {
+                apps = @[appsObject];
+            } else if ([appsObject isKindOfClass:[NSArray class]]) {
+                apps = appsObject;
+            }
+            
+            NSMutableArray *appList = [NSMutableArray new];
+            
+            [apps enumerateObjectsUsingBlock:^(NSDictionary *appInfoDictionary, NSUInteger idx, BOOL *stop)
+             {
+                 AppInfo *appInfo = [self appInfoFromDictionary:appInfoDictionary];
+                 [appList addObject:appInfo];
+             }];
+            
+            if (success)
+                success([NSArray arrayWithArray:appList]);
+        } else {
+            if (failure) {
+                NSString *details = [NSString stringWithFormat:
+                                     @"Couldn't parse apps XML (%@)", xmlError.localizedDescription];
+                failure([ConnectError generateErrorWithCode:ConnectStatusCodeTvError
+                                                 andDetails:details]);
+            }
+        }
+    };
+    command.callbackError = failure;
+    [command send];
+}
+
 - (void)getAppState:(LaunchSession *)launchSession success:(AppStateSuccessBlock)success failure:(FailureBlock)failure
 {
     [self sendNotSupportedFailure:failure];
@@ -510,7 +556,7 @@ static NSMutableArray *registeredApps = nil;
         return;
     }
     
-    NSString *applicationPath = [NSString stringWithFormat:@"15985?t=p&u=%@&tr=crossfade",
+    NSString *applicationPath = [NSString stringWithFormat:@"%@?t=p&u=%@&tr=crossfade", kRokuMediaPlayerAppID,
                                  [ConnectUtil urlEncode:imageURL.absoluteString] // content path
                                  ];
     
@@ -526,7 +572,7 @@ static NSMutableArray *registeredApps = nil;
     command.HTTPMethod = @"POST";
     command.callbackComplete = ^(id responseObject)
     {
-        LaunchSession *launchSession = [LaunchSession launchSessionForAppId:@"15985"];
+        LaunchSession *launchSession = [LaunchSession launchSessionForAppId:kRokuMediaPlayerAppID];
         launchSession.name = @"simplevideoplayer";
         launchSession.sessionType = LaunchSessionTypeMedia;
         launchSession.service = self;
@@ -565,6 +611,18 @@ static NSMutableArray *registeredApps = nil;
 
 - (void) playMediaWithMediaInfo:(MediaInfo *)mediaInfo shouldLoop:(BOOL)shouldLoop success:(MediaPlayerSuccessBlock)success failure:(FailureBlock)failure
 {
+    [self getCurrentAppListWithSuccess:^(NSArray *appList) {
+        AppInfo *first = [appList firstObject];
+        if (first && first.id != kRokuMediaPlayerAppID) {
+            currentApp = first;
+        }
+        if (!currentApp) {
+            [SSDPDiscoveryProvider logToFile:@"We failed in getting the current app on the Roku. Response was empty or media player id" filename:NULL];
+        }
+    } failure:^(NSError *error) {
+        [SSDPDiscoveryProvider logToFile:@"We failed in getting the current app on the Roku" filename:NULL];
+    }];
+    
     NSURL *iconURL;
     if(mediaInfo.images){
         ImageInfo *imageInfo = [mediaInfo.images firstObject];
@@ -589,14 +647,14 @@ static NSMutableArray *registeredApps = nil;
     
     if (isVideo)
     {
-        applicationPath = [NSString stringWithFormat:@"15985?t=v&u=%@&k=(null)&videoName=%@&videoFormat=%@",
+        applicationPath = [NSString stringWithFormat:@"%@?t=v&u=%@&k=(null)&videoName=%@&videoFormat=%@", kRokuMediaPlayerAppID,
                            [ConnectUtil urlEncode:mediaURL.absoluteString], // content path
                            title ? [ConnectUtil urlEncode:title] : @"(null)", // video name
                            ensureString(mediaType) // video format
                            ];
     } else
     {
-        applicationPath = [NSString stringWithFormat:@"15985?t=a&u=%@&k=(null)&songname=%@&artistname=%@&songformat=%@&albumarturl=%@",
+        applicationPath = [NSString stringWithFormat:@"%@?t=a&u=%@&k=(null)&songname=%@&artistname=%@&songformat=%@&albumarturl=%@", kRokuMediaPlayerAppID,
                            [ConnectUtil urlEncode:mediaURL.absoluteString], // content path
                            title ? [ConnectUtil urlEncode:title] : @"(null)", // song name
                            description ? [ConnectUtil urlEncode:description] : @"(null)", // artist name
@@ -617,7 +675,7 @@ static NSMutableArray *registeredApps = nil;
     command.HTTPMethod = @"POST";
     command.callbackComplete = ^(id responseObject)
     {
-        LaunchSession *launchSession = [LaunchSession launchSessionForAppId:@"15985"];
+        LaunchSession *launchSession = [LaunchSession launchSessionForAppId:kRokuMediaPlayerAppID];
         launchSession.name = @"simplevideoplayer";
         launchSession.sessionType = LaunchSessionTypeMedia;
         launchSession.service = self;
@@ -660,10 +718,12 @@ static NSMutableArray *registeredApps = nil;
 
 - (void)stopWithSuccess:(SuccessBlock)success failure:(FailureBlock)failure
 {
+    NSString *commandStr = (currentApp.id) ? @"launch" : @"keypress";
+    NSString *keypressCommand = (currentApp.id) ? currentApp.id : @"back";
     NSString *commandPath = [NSString pathWithComponents:@[
                                                            self.serviceDescription.commandURL.absoluteString,
-                                                           @"keypress",
-                                                           @"back",
+                                                           commandStr,
+                                                           keypressCommand,
                                                            ]];
     
     NSURL *targetURL = [NSURL URLWithString:commandPath];
