@@ -24,7 +24,6 @@
     @"AirPlayService"     : @"ZeroConfDiscoveryProvider", \
     @"DLNAService"        : @"SSDPDiscoveryProvider", \
     @"RokuService"        : @"SSDPDiscoveryProvider", \
-    @"CastService"        : @"CastDiscoveryProvider", \
 })
 
 #endif
