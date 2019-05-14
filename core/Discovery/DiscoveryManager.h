@@ -143,7 +143,7 @@
  * This method will be called when your app enters a background state. When your app resumes, startDiscovery will be called.
  */
 - (void) stopDiscovery;
-
+- (void) stopAndResetDiscovery;
 #pragma mark - Device Picker
 
 /*!

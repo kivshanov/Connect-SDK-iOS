@@ -485,6 +485,28 @@
     }
 }
 
+- (void) stopAndResetDiscovery
+{
+    if (!_searching)
+        return;
+    
+    _searching = NO;
+    
+    [_discoveryProviders enumerateObjectsUsingBlock:^(DiscoveryProvider *service, NSUInteger idx, BOOL *stop) {
+        [service stopDiscovery];
+    }];
+    _discoveryProviders = [[NSMutableArray alloc] init];
+    _deviceClasses = [[NSMutableDictionary alloc] init];
+    _compatibleDevices = [[NSMutableDictionary alloc] init];
+    _allDevices = [[NSMutableDictionary alloc] init];
+    
+    
+    if (!_shouldResumeSearch)
+    {
+        [self.appStateChangeNotifier stopListening];
+    }
+}
+
 /// Pauses all discovery providers and the SSID change timer.
 - (void)pauseDiscovery {
     // moved from -hAppDidEnterBackground:
