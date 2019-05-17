@@ -92,8 +92,8 @@ static double searchAttemptsBeforeKill = 6.0;
     }
 }
 
-+ (void) enableLogging {
-    _logging = YES;
++ (void) enableLogging: (BOOL) enable {
+    _logging = enable;
 }
 
 + (void) logToFile: (NSString *) content filename:(NSString *) filename {
