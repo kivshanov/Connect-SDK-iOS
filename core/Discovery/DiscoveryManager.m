@@ -279,7 +279,7 @@
     
     if ([ssidName caseInsensitiveCompare:_currentSSID] != NSOrderedSame)
     {
-        if (_currentSSID != nil)
+        if ([_currentSSID length] > 0)
         {
             [self purgeDeviceList];
             
