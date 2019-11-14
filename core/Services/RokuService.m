@@ -213,20 +213,21 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
         [request setHTTPMethod:@"GET"];
         [request addValue:@"0" forHTTPHeaderField:@"Content-Length"];
     }
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"Final ROKU sending - request object: %@",request] filename:NULL];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: Final ROKU sending - request object: %@",request] filename:NULL];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
          
          if (connectionError)
          {
+             [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: We have a bad response from Roku: %@", connectionError.debugDescription] filename:NULL];
              if (command.callbackError)
                  dispatch_on_main(^{ command.callbackError(connectionError); });
          } else
          {
              if ([httpResponse statusCode] < 200 || [httpResponse statusCode] >= 300)
              {
-                 [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have a bad response from Roku: %@", response] filename:NULL];
+                 [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: We have a bad response from Roku: %@", response] filename:NULL];
                  NSError *error = [ConnectError generateErrorWithCode:ConnectStatusCodeTvError andDetails:nil];
                  
                  if (command.callbackError)
@@ -236,7 +237,7 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
              }
              
              NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We have a good response from Roku: %@", dataString] filename:NULL];
+             [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: We have a good response from Roku: %@", dataString] filename:NULL];
              if (command.callbackComplete)
                  dispatch_on_main(^{ command.callbackComplete(dataString); });
          }
@@ -262,8 +263,10 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
 {
     if (!appId)
     {
-        if (failure)
+        if (failure) {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: You must provide an appId."] filename:NULL];
             failure([ConnectError generateErrorWithCode:ConnectStatusCodeArgumentError andDetails:@"You must provide an appId."]);
+        }
         return;
     }
     
@@ -281,8 +284,10 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
 {
     if (!appInfo || !appInfo.id)
     {
-        if (failure)
+        if (failure) {
+            [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: You must provide a valid AppInfo object."] filename:NULL];
             failure([ConnectError generateErrorWithCode:ConnectStatusCodeArgumentError andDetails:@"You must provide a valid AppInfo object."]);
+        }
         return;
     }
     
@@ -434,6 +439,7 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
             if (failure) {
                 NSString *details = [NSString stringWithFormat:
                                      @"Couldn't parse apps XML (%@)", xmlError.localizedDescription];
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: Couldn't parse apps XML (%@)", xmlError.localizedDescription] filename:NULL];
                 failure([ConnectError generateErrorWithCode:ConnectStatusCodeTvError
                                                  andDetails:details]);
             }
@@ -478,6 +484,7 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
             if (failure) {
                 NSString *details = [NSString stringWithFormat:
                                      @"Couldn't parse apps XML (%@)", xmlError.localizedDescription];
+                [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: Couldn't parse apps XML 2 (%@)", xmlError.localizedDescription] filename:NULL];
                 failure([ConnectError generateErrorWithCode:ConnectStatusCodeTvError
                                                  andDetails:details]);
             }
@@ -617,10 +624,10 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
             currentApp = first;
         }
         if (!currentApp) {
-            [SSDPDiscoveryProvider logToFile:@"We failed in getting the current app on the Roku. Response was empty or media player id" filename:NULL];
+            [SSDPDiscoveryProvider logToFile:@"[Roku]: We failed in getting the current app on the Roku. Response was empty or media player id" filename:NULL];
         }
     } failure:^(NSError *error) {
-        [SSDPDiscoveryProvider logToFile:@"We failed in getting the current app on the Roku" filename:NULL];
+        [SSDPDiscoveryProvider logToFile:@"[Roku]: We failed in getting the current app on the Roku" filename:NULL];
     }];
     
     NSURL *iconURL;
@@ -634,8 +641,10 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
     NSString *description = mediaInfo.description;
     if (!mediaURL)
     {
-        if (failure)
+        if (failure) {
+            [SSDPDiscoveryProvider logToFile:@"[Roku]: You need to provide a media URL" filename:NULL];
             failure([ConnectError generateErrorWithCode:ConnectStatusCodeArgumentError andDetails:@"You need to provide a media URL"]);
+        }
         
         return;
     }
@@ -670,7 +679,7 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
                                                            ]];
     
     NSURL *targetURL = [NSURL URLWithString:commandPath];
-    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"We will send ROKU play commant for the following URL: %@", targetURL] filename:NULL];
+    [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: We will send ROKU play commant for the following URL: %@", targetURL] filename:NULL];
     ServiceCommand *command = [ServiceCommand commandWithDelegate:self.serviceCommandDelegate target:targetURL payload:nil];
     command.HTTPMethod = @"POST";
     command.callbackComplete = ^(id responseObject)
@@ -834,8 +843,10 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
 {
     if (keyCode > kRokuKeyCodes.count)
     {
-        if (failure)
+        if (failure) {
+            [SSDPDiscoveryProvider logToFile:@"[Roku]: Strange error" filename:nil];
             failure([ConnectError generateErrorWithCode:ConnectStatusCodeArgumentError andDetails:nil]);
+        }
         return;
     }
     
@@ -938,13 +949,17 @@ static const NSString *kRokuMediaPlayerAppID = @"15985";
                      success(foundAppInfo);
              } else
              {
-                 if (failure)
+                 if (failure) {
+                     [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: Could not find this app on the TV"] filename:NULL];
                      failure([ConnectError generateErrorWithCode:ConnectStatusCodeError andDetails:@"Could not find this app on the TV"]);
+                 }
              }
          } else
          {
-             if (failure)
+             if (failure) {
+                 [SSDPDiscoveryProvider logToFile:[NSString stringWithFormat:@"[Roku]: ould not find any apps on the TV."] filename:NULL];
                  failure([ConnectError generateErrorWithCode:ConnectStatusCodeTvError andDetails:@"Could not find any apps on the TV."]);
+             }
          }
      } failure:failure];
 }
